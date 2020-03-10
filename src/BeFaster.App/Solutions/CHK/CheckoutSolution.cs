@@ -72,7 +72,7 @@ namespace BeFaster.App.Solutions.CHK
                 if (offer is BuyMultipleForPriceReduction multiplePriceReductionOffer)
                 {
                     int calculatedDiscountedPrice = multiplePriceReductionOffer.GetDiscountedPrice(productId, cartItemQuantity, actualProductPrice);
-                    discountedPrice = calculatedDiscountedPrice > discountedPrice ? calculatedDiscountedPrice : discountedPrice;
+                    discountedPrice = calculatedDiscountedPrice < discountedPrice ? calculatedDiscountedPrice : discountedPrice;
                 }                
             }
             return discountedPrice;
@@ -132,13 +132,7 @@ namespace BeFaster.App.Solutions.CHK
                     SpecialPrice = 45,
                     OfferType = Enums.SpecialOfferType.BuyMultipleForPriceReduction
                 } });
-            SpecialOffers.Add('A', new List<SpecialOffer>{
-                new BuyMultipleForPriceReduction
-                {
-                    ItemQuantity = 5,
-                    SpecialPrice = 200,
-                    OfferType = Enums.SpecialOfferType.BuyMultipleForPriceReduction
-                } });
+
             SpecialOffers.Add('E', new List<SpecialOffer>{
                 new BuyOneGetAnotherFree
                 {
@@ -150,6 +144,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 
