@@ -136,7 +136,7 @@ namespace BeFaster.App.Tests.Solutions.CHK
 
 
         [TestMethod]
-        public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Single_SKU_That_Satisfies_SpecialOffer_Along_With_Regular_SKU()
+        public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Multiple_SKU_That_Satisfies_Single_SpecialOffer_Along_With_Regular_SKU()
         {
             AddProducts();
             AddSpecialOffers();
@@ -144,7 +144,7 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
 
         [TestMethod]
-        public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Multiple_SKU_That_Satisfies_SpecialOffer_Along_With_Regular_SKU()
+        public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Multiple_SKU_That_Satisfies_Multiple_SpecialOffers_Along_With_Regular_SKU()
         {
             AddProducts();
             AddSpecialOffers();
@@ -194,4 +194,5 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
     }
 }
+
 
