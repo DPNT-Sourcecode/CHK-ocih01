@@ -5,11 +5,11 @@ using System.Linq;
 
 namespace BeFaster.App.Solutions.CHK.Services
 {
-    public class SpecialOfferService
+    public class SpecialOfferService : ISpecialOfferService
     {
-        public static readonly IDictionary<char, IList<ISpecialOffer>> SpecialOffers = new Dictionary<char, IList<ISpecialOffer>>();
+        public IDictionary<char, IList<ISpecialOffer>> SpecialOffers { get; set; }
 
-        public static int GetDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice)
+        public int GetDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice)
         {
             int discountedPrice = 0;
             var specialOffers = SpecialOffers[productId];
@@ -28,7 +28,7 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
 
 
-        public static IDictionary<char, int> ApplyBuyOneProductGetAnotherProductFreeOffer(IDictionary<char, int> skuCounts)
+        public IDictionary<char, int> ApplyBuyOneProductGetAnotherProductFreeOffer(IDictionary<char, int> skuCounts)
         {
             var offers = SpecialOffers.Where(x => x.Value.Any(y => y.GetType().Equals(typeof(BuyOneGetAnotherFree))))
                 .ToDictionary(s => s.Key, s => s.Value.Where(z => z.OfferType == Enums.SpecialOfferType.BuyOneGetAnotherFree).ToList());
@@ -53,4 +53,5 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
     }
 }
+
 

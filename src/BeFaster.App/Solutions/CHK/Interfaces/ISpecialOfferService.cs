@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace BeFaster.App.Solutions.CHK.Interfaces
 {
@@ -12,3 +8,4 @@ namespace BeFaster.App.Solutions.CHK.Interfaces
         IDictionary<char, int> ApplyBuyOneProductGetAnotherProductFreeOffer(IDictionary<char, int> skuCounts);
     }
 }
+
