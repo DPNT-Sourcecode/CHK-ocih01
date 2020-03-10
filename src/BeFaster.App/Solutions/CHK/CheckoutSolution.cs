@@ -98,6 +98,11 @@ namespace BeFaster.App.Solutions.CHK
                 Id = 'E',
                 Price = 40
             });
+            Products.Add(new Product
+            {
+                Id = 'F',
+                Price = 10
+            });
         }
 
         private static void AddSpecialOffers()
@@ -134,6 +139,17 @@ namespace BeFaster.App.Solutions.CHK
                     FreeItemQuantity = 1
                 }
             });
+
+            SpecialOffers.Add('F', new List<ISpecialOffer>{
+                new BuyOneGetAnotherFree
+                {
+                    ItemQuantity = 2,
+                    FreeItemId = 'F',
+                    OfferType = Enums.SpecialOfferType.BuyOneGetAnotherFree,
+                    FreeItemQuantity = 1
+                }
+            });
         }
     }
 }
+
