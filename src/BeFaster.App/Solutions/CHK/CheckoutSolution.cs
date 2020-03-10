@@ -57,7 +57,8 @@ namespace BeFaster.App.Solutions.CHK
                 if (skuCounts.Keys.Contains(offer.Key) && skuCounts[offer.Key] >= buyOneGetOneOffer.ItemQuantity && skuCounts.Keys.Contains(buyOneGetOneOffer.FreeItemId))
                 {
                     if(skuCounts.Keys.Contains(buyOneGetOneOffer.FreeItemId)) {
-                        skuCounts[buyOneGetOneOffer.FreeItemId]
+                        var itemCountAfterReduction = skuCounts[buyOneGetOneOffer.FreeItemId] - skuCounts[buyOneGetOneOffer.FreeItemId];
+                        skuCounts[buyOneGetOneOffer.FreeItemId] = itemCountAfterReduction > 0 ? itemCountAfterReduction : 0;
                     }
                 }
             }
@@ -169,3 +170,4 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
