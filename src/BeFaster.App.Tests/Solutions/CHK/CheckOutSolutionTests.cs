@@ -134,7 +134,7 @@ namespace BeFaster.App.Tests.Solutions.CHK
         [TestMethod]
         public void ComputePrice_Should_Return_Lowest_TotalPrice_Given_Single_SKU_That_has_Combination_That_Satisfies_Multiple_PriceReduction_SpecialOffers()
         {
-            Assert.AreEqual(250, CheckoutSolution.ComputePrice("AAAAAA"));
+            Assert.AreEqual(330, CheckoutSolution.ComputePrice("AAAAAAAA"));
         }
 
         [TestMethod]
@@ -161,5 +161,3 @@ namespace BeFaster.App.Tests.Solutions.CHK
         #endregion
     }
 }
-
-

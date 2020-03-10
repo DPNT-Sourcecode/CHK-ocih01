@@ -58,6 +58,3 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
     }
 }
-
-
-
