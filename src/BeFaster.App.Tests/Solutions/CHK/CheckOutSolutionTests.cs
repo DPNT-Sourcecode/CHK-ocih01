@@ -1,7 +1,6 @@
 ﻿using BeFaster.App.Solutions.CHK;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BeFaster.App.Solutions.CHK.Models;
-using System.Collections.Generic;
 
 namespace BeFaster.App.Tests.Solutions.CHK
 {
@@ -57,22 +56,23 @@ namespace BeFaster.App.Tests.Solutions.CHK
 
         private void AddProducts()
         {
-            CheckoutSolution.Products = new List<Product>( new Product
+            CheckoutSolution.Products.Clear();
+            CheckoutSolution.Products.Add(new Product
             {
                 Id = 'A',
                 Price = 50
-            },
-            new Product
+            });
+            CheckoutSolution.Products.Add(new Product
             {
                 Id = 'B',
                 Price = 30
-            },
-            new Product
+            });
+            CheckoutSolution.Products.Add(new Product
             {
                 Id = 'C',
                 Price = 20
-            },
-            new Product
+            });
+            CheckoutSolution.Products.Add(new Product
             {
                 Id = 'D',
                 Price = 15
@@ -80,5 +80,6 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
     }
 }
+
 
 
