@@ -8,10 +8,10 @@ namespace BeFaster.App.Solutions.CHK
     {
         public static readonly IList<Product> Products = new List<Product>();
         public static readonly IDictionary<char, SpecialOffer> SpecialOffers = new Dictionary<char, SpecialOffer>();
+        private const int invalidInput = -1;
 
         public static int ComputePrice(string skus)
         {
-            const int invalidInput = -1;
             int totalPrice = 0;
 
             if (string.IsNullOrWhiteSpace(skus)) { return invalidInput; }
@@ -32,5 +32,24 @@ namespace BeFaster.App.Solutions.CHK
             }
             return totalPrice;
         }
+
+        private static int CalculateTotalPrice(string skus)
+        {
+            int totalPrice = 0;
+            foreach (char sku in skus)
+            {
+                var product = Products.FirstOrDefault(x => x.Id == sku);
+                if (product != null)
+                {
+                    totalPrice += product.Price;
+                }
+                else
+                {
+                    return invalidInput;
+                }
+            }
+            return totalPrice;
+        }
     }
 }
+
