@@ -13,4 +13,3 @@ namespace BeFaster.App.Solutions.CHK.Interfaces
         SpecialOfferType OfferType { get; set; }
     }
 }
-

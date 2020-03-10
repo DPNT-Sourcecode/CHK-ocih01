@@ -1,5 +1,6 @@
 ﻿using BeFaster.App.Solutions.CHK.Interfaces;
 using BeFaster.App.Solutions.CHK.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -41,6 +42,13 @@ namespace BeFaster.App.Solutions.CHK
                     skuCounts.Add(sku, 1);
                 }
             }
+            skuCounts = HandleBuyOneProductGetAnotherProductFreeOffer(skuCounts);
+            return skuCounts;
+        }
+
+        private static IDictionary<char, int> HandleBuyOneProductGetAnotherProductFreeOffer(IDictionary<char, int> skuCounts)
+        {
+            var specialOffers = SpecialOffers.Where(x => x.Value.Any(y=> y.GetType().Equals(typeof(BuyOneGetAnotherFree))));
             return skuCounts;
         }
 
@@ -147,5 +155,3 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
-
-
