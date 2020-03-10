@@ -1,10 +1,15 @@
-﻿using BeFaster.Runner.Exceptions;
+﻿using BeFaster.App.Solutions.CHK.Models;
+using BeFaster.Runner.Exceptions;
+using System.Collections.Generic;
 
 namespace BeFaster.App.Solutions.CHK
 {
-    public static class CheckoutSolution
-    {    
-        public static int ComputePrice(string skus)
+    public class CheckoutSolution
+    {
+        public IList<Product> Products;
+        public IList<SpecialOffers> specialOffers;
+
+        public int ComputePrice(string skus)
         {
             const int invalidInput = -1;
 
@@ -14,3 +19,4 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
