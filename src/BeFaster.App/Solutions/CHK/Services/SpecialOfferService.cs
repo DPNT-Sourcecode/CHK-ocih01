@@ -25,9 +25,9 @@ namespace BeFaster.App.Solutions.CHK.Services
                 {
                     if (cartItemQuantity >= offer.ItemQuantity)
                     {
-                        int calculatedDiscountedPrice = multiplePriceReductionOffer.GetDiscountedPrice(productId, cartItemQuantity, actualProductPrice);
-                        discountedPrice += calculatedDiscountedPrice;
+                        discountedPrice += multiplePriceReductionOffer.GetDiscountedPrice(productId, cartItemQuantity, actualProductPrice);
                         cartItemQuantity = cartItemQuantity - (offer.ItemQuantity * (cartItemQuantity / offer.ItemQuantity));
+                        if (cartItemQuantity == 0) break;
                         continue;
                     }
                     else
@@ -65,3 +65,4 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
     }
 }
+
