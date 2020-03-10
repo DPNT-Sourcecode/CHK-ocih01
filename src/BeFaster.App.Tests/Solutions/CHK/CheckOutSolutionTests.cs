@@ -1,5 +1,6 @@
 ﻿using BeFaster.App.Solutions.CHK;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using App.Solutions.CHK.Models.Product;
 
 namespace BeFaster.App.Tests.Solutions.CHK
 {
@@ -27,14 +28,26 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
 
         [TestMethod]
-        public void ComputePrice_Should_Return_InvalidInput_Given_Product_That_Does_NotExist_In_ProductsList()
+        public void ComputePrice_Should_Return_InvalidInput_Given_Empty_ProductsList()
         {
             CheckoutSolution.Products.Clear();
             Assert.AreEqual(invalidInput, CheckoutSolution.ComputePrice("Z"));
         }
 
         [TestMethod]
-        public void ComputePrice_Should_Return_Correct_TotalPrice_Given_SKU_That_Does_Exist_In_ProductList()
+        public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Single_SKU_That_Does_Exist_In_ProductList()
+        {
+            CheckoutSolution.Products.Add(new App.Solutions.CHK.Models.Product
+            {
+                Id = 'A',
+                Price = 10
+            });
+
+            Assert.AreEqual(10, CheckoutSolution.ComputePrice("A"));
+        }
+
+        [TestMethod]
+        public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Multiple_SKUs_That_Does_Exist_In_ProductList()
         {
             CheckoutSolution.Products.Add(new App.Solutions.CHK.Models.Product
             {
@@ -46,3 +59,4 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
     }
 }
+
