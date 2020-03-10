@@ -29,6 +29,7 @@ namespace BeFaster.App.Tests.Solutions.CHK
         [TestMethod]
         public void ComputePrice_Should_Return_InvalidInput_Given_Product_That_Does_NotExist_In_ProductsList()
         {
+            CheckoutSolution.Products.Clear();
             Assert.AreEqual(invalidInput, CheckoutSolution.ComputePrice("Z"));
         }
 
@@ -37,15 +38,11 @@ namespace BeFaster.App.Tests.Solutions.CHK
         {
             CheckoutSolution.Products.Add(new App.Solutions.CHK.Models.Product
             {
-                Id = "A",
+                Id = 'A',
                 Price = 10
             });
 
-            Assert.AreEqual(invalidInput, CheckoutSolution.ComputePrice("A"));
+            Assert.AreEqual(10, CheckoutSolution.ComputePrice("A"));
         }
     }
 }
-
-
-
-
