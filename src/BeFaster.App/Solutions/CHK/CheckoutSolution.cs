@@ -25,9 +25,13 @@ namespace BeFaster.App.Solutions.CHK
                 {
                     totalPrice += product.Price;
                 }
+                else
+                {
+                    return invalidInput;
+                }
             }
-
             return totalPrice;
         }
     }
 }
+

@@ -59,7 +59,7 @@ namespace BeFaster.App.Tests.Solutions.CHK
         public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Multiple_Repeated_And_NonRepeated_SKUs()
         {
             AddProducts();
-            Assert.AreEqual(40, CheckoutSolution.ComputePrice("CC"));
+            Assert.AreEqual(120, CheckoutSolution.ComputePrice("CDCDA"));
         }
 
         private void AddProducts()
@@ -88,6 +88,7 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
     }
 }
+
 
 
 
