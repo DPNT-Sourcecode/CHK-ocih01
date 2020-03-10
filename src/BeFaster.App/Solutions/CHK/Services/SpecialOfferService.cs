@@ -31,7 +31,7 @@ namespace BeFaster.App.Solutions.CHK.Services
                 else
                 {
                     discountedPrice += cartItemQuantity * actualProductPrice;
-                }
+                }       
             }
             return discountedPrice;
         }
@@ -62,5 +62,6 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
     }
 }
+
 
 
