@@ -6,12 +6,12 @@ namespace BeFaster.App.Tests.Solutions.CHK
     [TestClass]
     public class CheckOutSolutionTests
     {
+        const int invalidInput = -1;
+
         [TestMethod]
-        public void ComputePrice_Should_Return_Zero_Given_No_SKU()
+        public void ComputePrice_Should_Return_InvalidInput_Given_Empty_SKU_string()
         {
-            Assert.AreEqual(0, CheckoutSolution.ComputePrice(string.Empty));
+            Assert.AreEqual(invalidInput, CheckoutSolution.ComputePrice(string.Empty));
         }
     }
 }
-
-
