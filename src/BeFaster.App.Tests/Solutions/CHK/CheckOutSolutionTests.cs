@@ -126,19 +126,26 @@ namespace BeFaster.App.Tests.Solutions.CHK
         #region Special Offer Tests Challenge 2
 
         [TestMethod]
-        public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Single_SKU_That_has_Combination_That_Satisfies_Multiple_SpecialOffers()
+        public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Single_SKU_That_has_Combination_That_Satisfies_Multiple_PriceReduction_SpecialOffers()
         {
             Assert.AreEqual(200, CheckoutSolution.ComputePrice("AAAAA"));
         }
 
         [TestMethod]
-        public void ComputePrice_Should_Return_Lowest_TotalPrice_Given_Single_SKU_That_has_Combination_That_Satisfies_Multiple_SpecialOffers()
+        public void ComputePrice_Should_Return_Lowest_TotalPrice_Given_Single_SKU_That_has_Combination_That_Satisfies_Multiple_PriceReduction_SpecialOffers()
         {
             Assert.AreEqual(250, CheckoutSolution.ComputePrice("AAAAAA"));
+        }
+
+        [TestMethod]
+        public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Single_SKU_That_has_Combination_That_Satisfies_Single_BuyOneGetAnotherFree_Offer()
+        {
+            Assert.AreEqual(250, CheckoutSolution.ComputePrice("EEB"));
         }
 
         #endregion
     }
 }
+
 
 
