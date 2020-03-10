@@ -1,6 +1,107 @@
 [
   {
-    "Id":"A",
+    "Id": "A",
+    "Price": 50
+  },
+  {
+    "Id": "B",
+    "Price": 30
+  },
+  {
+    "Id": "C",
+    "Price": 20
+  },
+  {
+    "Id": "D",
+    "Price": 15
+  },
+  {
+    "Id": "E",
+    "Price": 40
+  },
+  {
+    "Id": "F",
+    "Price": 10
+  },
+  {
+    "Id": "G",
+    "Price": 20
+  },
+  {
+    "Id": "H",
+    "Price": 10
+  },
+  {
+    "Id": "I",
+    "Price": 35
+  },
+  {
+    "Id": "J",
+    "Price": 60
+  },
+  {
+    "Id": "K",
+    "Price": 80
+  },
+  {
+    "Id": "L",
+    "Price": 90
+  },
+  {
+    "Id": "M",
+    "Price": 15
+  },
+  {
+    "Id": "N",
+    "Price": 40
+  },
+  {
+    "Id": "O",
+    "Price": 10
+  },
+  {
+    "Id": "P",
+    "Price": 50
+  },
+  {
+    "Id": "Q",
+    "Price": 30
+  },
+  {
+    "Id": "R",
+    "Price": 50
+  },
+  {
+    "Id": "S",
+    "Price": 30
+  },
+  {
+    "Id": "T",
+    "Price": 20
+  },
+  {
+    "Id": "U",
+    "Price": 40
+  },
+  {
+    "Id": "V",
+    "Price": 50
+  },
+  {
+    "Id": "W",
+    "Price": 20
+  },
+  {
+    "Id": "X",
+    "Price": 90
+  },
+  {
+    "Id": "Y",
+    "Price": 10
+  },
+  {
+    "Id": "Z",
     "Price": 50
   }
 ]
+
