@@ -1,5 +1,4 @@
 ﻿using BeFaster.App.Solutions.CHK.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -42,8 +41,8 @@ namespace BeFaster.App.Solutions.CHK
         private static int CalculateDiscountedPrice(char productId, int currentItemQuantity, int actualProductPrice)
         {
             int discountedPrice = 0;
-
             var specialOffer = SpecialOffers[productId];
+
             discountedPrice = currentItemQuantity / specialOffer.ItemQuantity * specialOffer.SpecialPrice;
             discountedPrice += currentItemQuantity % specialOffer.ItemQuantity * actualProductPrice;
 
@@ -58,11 +57,8 @@ namespace BeFaster.App.Solutions.CHK
                 var product = Products.FirstOrDefault(x => x.Id == skuCount.Key);
                 if (product != null)
                 {
-                    if (SpecialOffers.ContainsKey(skuCount.Key))
-                    {
-                        totalPrice += CalculateDiscountedPrice(skuCount.Key, skuCount.Value, product.Price);
-                    }
-                    totalPrice += product.Price * skuCount.Value;
+                    totalPrice += SpecialOffers.ContainsKey(skuCount.Key) ?
+                        CalculateDiscountedPrice(skuCount.Key, skuCount.Value, product.Price) : product.Price * skuCount.Value;
                 }
                 else
                 {
@@ -73,6 +69,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 
