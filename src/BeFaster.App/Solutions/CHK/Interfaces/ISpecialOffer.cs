@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace BeFaster.App.Solutions.CHK.Interfaces
 {
-    interface ISpecialOffer
+    public interface ISpecialOffer
     {
+        int CalculateDiscountedPrice();
     }
 }
+

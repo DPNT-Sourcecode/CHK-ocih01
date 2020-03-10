@@ -61,6 +61,8 @@
   <ItemGroup>
     <Compile Include="SendCommandToServer.cs" />
     <Compile Include="Solutions\CHK\CheckoutSolution.cs" />
+    <Compile Include="Solutions\CHK\Enums\SpecialOfferType.cs" />
+    <Compile Include="Solutions\CHK\Interfaces\ISpecialOffer.cs" />
     <Compile Include="Solutions\CHK\Models\Product.cs" />
     <Compile Include="Solutions\CHK\Models\SpecialOffer.cs" />
     <Compile Include="Solutions\FIZ\FizzBuzzSolution.cs" />

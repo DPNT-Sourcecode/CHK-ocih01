@@ -65,11 +65,16 @@ namespace BeFaster.App.Solutions.CHK
         private static int CalculateDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice)
         {
             int discountedPrice = 0;
-            var specialOffer = SpecialOffers.All();
+            var specialOffers = SpecialOffers[productId];
 
-            discountedPrice = cartItemQuantity / specialOffer.ItemQuantity * specialOffer.SpecialPrice;
-            discountedPrice += cartItemQuantity % specialOffer.ItemQuantity * actualProductPrice;
-
+            foreach(var offer in specialOffers)
+            {
+                if (offer is BuyMultipleForPriceReduction multiplePriceReductionOffer)
+                {
+                    int calculatedDiscountedPrice = multiplePriceReductionOffer.GetDiscountedPrice(productId, cartItemQuantity, actualProductPrice);
+                    discountedPrice = calculatedDiscountedPrice > discountedPrice ? calculatedDiscountedPrice : discountedPrice;
+                }                
+            }
             return discountedPrice;
         }
 
@@ -145,5 +150,6 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
