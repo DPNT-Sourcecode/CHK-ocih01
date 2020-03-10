@@ -7,12 +7,17 @@ namespace BeFaster.App.Solutions.CHK.Services
 {
     public class SpecialOfferService : ISpecialOfferService
     {
-        public IDictionary<char, IList<ISpecialOffer>> SpecialOffers { get; set; }
+        private readonly IDictionary<char, IList<ISpecialOffer>> _specialOffers;
+
+        public SpecialOfferService(IDictionary<char, IList<ISpecialOffer>> specialOffers)
+        {
+            _specialOffers = specialOffers;
+        }
 
         public int GetDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice)
         {
             int discountedPrice = 0;
-            var specialOffers = SpecialOffers[productId];
+            var specialOffers = _specialOffers[productId];
             bool isFirstPriceCalculation = true;
 
             foreach (var offer in specialOffers)
@@ -30,7 +35,7 @@ namespace BeFaster.App.Solutions.CHK.Services
 
         public IDictionary<char, int> ApplyBuyOneProductGetAnotherProductFreeOffer(IDictionary<char, int> skuCounts)
         {
-            var offers = SpecialOffers.Where(x => x.Value.Any(y => y.GetType().Equals(typeof(BuyOneGetAnotherFree))))
+            var offers = _specialOffers.Where(x => x.Value.Any(y => y.GetType().Equals(typeof(BuyOneGetAnotherFree))))
                 .ToDictionary(s => s.Key, s => s.Value.Where(z => z.OfferType == Enums.SpecialOfferType.BuyOneGetAnotherFree).ToList());
 
             foreach (var offer in offers)
@@ -53,5 +58,6 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
     }
 }
+
 
 

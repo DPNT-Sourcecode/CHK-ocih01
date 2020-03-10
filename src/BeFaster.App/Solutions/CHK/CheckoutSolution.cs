@@ -1,5 +1,6 @@
 ﻿using BeFaster.App.Solutions.CHK.Interfaces;
 using BeFaster.App.Solutions.CHK.Models;
+using BeFaster.App.Solutions.CHK.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace BeFaster.App.Solutions.CHK
     {
         public static readonly IList<Product> Products = new List<Product>();
         public static readonly IDictionary<char, IList<ISpecialOffer>> SpecialOffers = new Dictionary<char, IList<ISpecialOffer>>();
-        
+        public static readonly ISpecialOfferService specialOfferService = new SpecialOfferService(SpecialOffers);
         private const int invalidInput = -1;
 
         public static int ComputePrice(string skus)
@@ -18,10 +19,9 @@ namespace BeFaster.App.Solutions.CHK
             if (skus == null) { return invalidInput; }
 
             if (skus.Trim() == string.Empty) { return 0; }
-
+            
             AddProducts();
             AddSpecialOffers();
-
 
             IDictionary<char, int> skuCounts = GetSkuCounts(skus);
 
@@ -179,5 +179,6 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
