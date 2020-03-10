@@ -70,7 +70,7 @@ namespace BeFaster.App.Tests.Solutions.CHK
 
         #endregion
 
-        #region Special Offer Only Tests
+        #region Special Offer Tests Challenge 1
 
         [TestMethod]
         public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Single_SKU_With_SpecialOffer()
@@ -122,5 +122,16 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
 
         #endregion
+
+        #region Special Offer Tests Challenge 2
+
+        [TestMethod]
+        public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Single_SKU_That_has_Combination_That_Satisfies_Multiple_SpecialOffers()
+        {
+            Assert.AreEqual(180, CheckoutSolution.ComputePrice("AAAAA"));
+        }
+
+        #endregion
     }
 }
+
