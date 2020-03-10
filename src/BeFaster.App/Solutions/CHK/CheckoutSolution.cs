@@ -53,10 +53,12 @@ namespace BeFaster.App.Solutions.CHK
 
             foreach(var offer in offers)
             {
-                var buyOneGetAnotherOffers = offer.Value.
-                if (skuCounts.Keys.Contains(buyOneGetOneOffer.Key) && skuCounts[buyOneGetOneOffer.Key] >= buyOneGetOneOffer.Value.ItemQuantity && skuCounts.Keys.Contains(buyOneGetOneOffer.Value.FreeItemId))
+                var buyOneGetOneOffer = offer.Value as BuyOneGetAnotherFree;
+                if (skuCounts.Keys.Contains(offer.Key) && skuCounts[offer.Key] >= buyOneGetOneOffer.ItemQuantity && skuCounts.Keys.Contains(buyOneGetOneOffer.FreeItemId))
                 {
-                    skuCounts[buyOneGetOneOffer.Value.FreeItemId]
+                    if(skuCounts.Keys.Contains(buyOneGetOneOffer.FreeItemId)) {
+                        skuCounts[buyOneGetOneOffer.FreeItemId]
+                    }
                 }
             }
 
@@ -160,13 +162,10 @@ namespace BeFaster.App.Solutions.CHK
                 {
                     ItemQuantity = 2,
                     FreeItemId = 'B',
-                    OfferType = Enums.SpecialOfferType.BuyOneGetAnotherFree
+                    OfferType = Enums.SpecialOfferType.BuyOneGetAnotherFree,
+                    FreeItemQuantity = 1
                 }
             });
         }
     }
 }
-
-
-
-
