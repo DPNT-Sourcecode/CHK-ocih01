@@ -73,12 +73,14 @@ namespace BeFaster.App.Solutions.CHK
         private static int CalculateTotalPrice(IDictionary<char, int> skuCounts)
         {
             int totalPrice = 0;
+            var offers = SpecialOffers.Where(x => x.Value.Any(y => y.GetType().Equals(typeof(BuyMultipleForPriceReduction))))
+               .ToDictionary(s => s.Key, s => s.Value.Where(z => z.OfferType == Enums.SpecialOfferType.BuyMultipleForPriceReduction).ToList());
             foreach (var skuCount in skuCounts)
             {
                 var product = Products.FirstOrDefault(x => x.Id == skuCount.Key);
                 if (product != null)
                 {
-                    totalPrice += SpecialOffers.ContainsKey(skuCount.Key) ?
+                    totalPrice += offers.ContainsKey(skuCount.Key) ?
                         GetDiscountedPrice(skuCount.Key, skuCount.Value, product.Price) : product.Price * skuCount.Value;
                 }
                 else
@@ -174,6 +176,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 
