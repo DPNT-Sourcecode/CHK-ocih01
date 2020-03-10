@@ -12,4 +12,3 @@ namespace BeFaster.App.Solutions.CHK.Enums
         BuyMultipleForPriceReduction
     }
 }
-
