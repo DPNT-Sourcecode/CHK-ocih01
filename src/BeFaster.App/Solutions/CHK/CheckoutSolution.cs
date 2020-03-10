@@ -14,6 +14,7 @@ namespace BeFaster.App.Solutions.CHK
 
         public static int ComputePrice(string skus)
         {
+            skuCounts.Clear();
             if (string.IsNullOrWhiteSpace(skus)) { return invalidInput; }
 
             if (Products.Count == 0) return invalidInput;
@@ -72,5 +73,6 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
