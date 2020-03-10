@@ -62,6 +62,13 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
 
         [TestMethod]
+        public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Single_SKU()
+        {
+            AddProducts();
+            Assert.AreEqual(50, CheckoutSolution.ComputePrice("B"));
+        }
+
+        [TestMethod]
         public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Multiple_Distinct_SKUs()
         {
             AddProducts();
@@ -152,48 +159,9 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
 
         #endregion
-
-        private void AddProducts()
-        {
-            CheckoutSolution.Products.Clear();
-            CheckoutSolution.Products.Add(new Product
-            {
-                Id = 'A',
-                Price = 50
-            });
-            CheckoutSolution.Products.Add(new Product
-            {
-                Id = 'B',
-                Price = 30
-            });
-            CheckoutSolution.Products.Add(new Product
-            {
-                Id = 'C',
-                Price = 20
-            });
-            CheckoutSolution.Products.Add(new Product
-            {
-                Id = 'D',
-                Price = 15
-            });
-        }
-
-        private void AddSpecialOffers()
-        {
-            CheckoutSolution.SpecialOffers.Clear();
-            CheckoutSolution.SpecialOffers.Add('A', new SpecialOffer
-            {
-                ItemQuantity = 3,
-                SpecialPrice = 130
-            });
-            CheckoutSolution.SpecialOffers.Add('B', new SpecialOffer
-            {
-                ItemQuantity = 2,
-                SpecialPrice = 45
-            });
-        }
     }
 }
+
 
 
 

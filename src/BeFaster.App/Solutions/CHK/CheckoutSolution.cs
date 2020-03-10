@@ -17,7 +17,9 @@ namespace BeFaster.App.Solutions.CHK
 
             if (skus.Trim() == string.Empty) { return 0; }
 
-            if (Products.Count == 0) return invalidInput;
+            AddProducts();
+            AddSpecialOffers();
+
 
             IDictionary<char, int> skuCounts = GetSkuCounts(skus);
 
@@ -70,7 +72,48 @@ namespace BeFaster.App.Solutions.CHK
 
             return discountedPrice;
         }
+
+        private static void AddProducts()
+        {
+            Products.Clear();
+            Products.Add(new Product
+            {
+                Id = 'A',
+                Price = 50
+            });
+            Products.Add(new Product
+            {
+                Id = 'B',
+                Price = 30
+            });
+            Products.Add(new Product
+            {
+                Id = 'C',
+                Price = 20
+            });
+            Products.Add(new Product
+            {
+                Id = 'D',
+                Price = 15
+            });
+        }
+
+        private static void AddSpecialOffers()
+        {
+            SpecialOffers.Clear();
+            SpecialOffers.Add('A', new SpecialOffer
+            {
+                ItemQuantity = 3,
+                SpecialPrice = 130
+            });
+            SpecialOffers.Add('B', new SpecialOffer
+            {
+                ItemQuantity = 2,
+                SpecialPrice = 45
+            });
+        }
     }
 }
+
 
 
