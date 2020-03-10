@@ -104,29 +104,20 @@ namespace BeFaster.App.Tests.Solutions.CHK
         private void AddSpecialOffers()
         {
             CheckoutSolution.SpecialOffers.Clear();
-            CheckoutSolution.Products.Add(new Product
+            CheckoutSolution.SpecialOffers.Add('A', new SpecialOffer
             {
-                Id = 'A',
-                Price = 50
+                ItemQuantity = 3,
+                SpecialPrice = 130
             });
-            CheckoutSolution.Products.Add(new Product
+            CheckoutSolution.SpecialOffers.Add('B', new SpecialOffer
             {
-                Id = 'B',
-                Price = 30
-            });
-            CheckoutSolution.Products.Add(new Product
-            {
-                Id = 'C',
-                Price = 20
-            });
-            CheckoutSolution.Products.Add(new Product
-            {
-                Id = 'D',
-                Price = 15
+                ItemQuantity = 2,
+                SpecialPrice = 45
             });
         }
     }
 }
+
 
 
 

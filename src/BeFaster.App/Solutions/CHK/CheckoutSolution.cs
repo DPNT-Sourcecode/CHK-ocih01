@@ -7,7 +7,7 @@ namespace BeFaster.App.Solutions.CHK
     public static class CheckoutSolution
     {
         public static readonly IList<Product> Products = new List<Product>();
-        public static readonly IDictionary<int, SpecialOffer> SpecialOffers = new Dictionary<int, SpecialOffer>();
+        public static readonly IDictionary<char, SpecialOffer> SpecialOffers = new Dictionary<char, SpecialOffer>();
 
         public static int ComputePrice(string skus)
         {
@@ -34,4 +34,5 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
