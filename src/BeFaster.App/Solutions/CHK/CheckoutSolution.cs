@@ -9,7 +9,7 @@ namespace BeFaster.App.Solutions.CHK
     {
         public static readonly IList<Product> Products = new List<Product>();
         public static readonly IDictionary<char, SpecialOffer> SpecialOffers = new Dictionary<char, SpecialOffer>();
-        private static IDictionary<char, int> skuCount = new Dictionary<char, int>();
+        private static IDictionary<char, int> skuCounts = new Dictionary<char, int>();
         private const int invalidInput = -1;
 
         public static int ComputePrice(string skus)
@@ -18,10 +18,32 @@ namespace BeFaster.App.Solutions.CHK
 
             if (Products.Count == 0) return invalidInput;
 
+            CountSkus(skus);
+
             int totalPrice = CalculateTotalPrice(skus);
             int totalDiscount = CalculateDiscount(skus);
 
             return totalPrice;
+        }
+
+        private static void CountSkus(string skus)
+        {
+            foreach (char sku in skus)
+            {
+                if(skuCount.ContainsKey(sku))
+                {
+                    sku
+                }
+                var product = Products.FirstOrDefault(x => x.Id == sku);
+                if (product != null)
+                {
+                    totalPrice += product.Price;
+                }
+                else
+                {
+                    return invalidInput;
+                }
+            }
         }
 
         private static int CalculateDiscount(string skus)
@@ -53,6 +75,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 
