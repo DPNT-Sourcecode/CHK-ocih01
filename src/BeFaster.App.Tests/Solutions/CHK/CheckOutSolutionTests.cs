@@ -14,7 +14,7 @@ namespace BeFaster.App.Tests.Solutions.CHK
         [TestMethod]
         public void ComputePrice_Should_Return_InvalidInput_Given_Empty_SKU_string()
         {
-            Assert.AreEqual(invalidInput, CheckoutSolution.ComputePrice(string.Empty));
+            Assert.AreEqual(0, CheckoutSolution.ComputePrice(string.Empty));
         }
 
         [TestMethod]
@@ -26,7 +26,7 @@ namespace BeFaster.App.Tests.Solutions.CHK
         [TestMethod]
         public void ComputePrice_Should_Return_InvalidInput_Given_WhiteSpace_As_SKU_string()
         {
-            Assert.AreEqual(invalidInput, CheckoutSolution.ComputePrice("  "));
+            Assert.AreEqual(0, CheckoutSolution.ComputePrice("  "));
         }
 
         [TestMethod]
@@ -194,5 +194,6 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
     }
 }
+
 
 
