@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BeFaster.App.Tests.Solutions.CHK
 {
-    class CheckOutSolutionTests
+    [TestClass]
+    public class CheckOutSolutionTests
     {
+        [TestMethod]
+        public void ComputePrice()
+        {
+
+        }
     }
 }
+
