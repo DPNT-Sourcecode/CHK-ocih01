@@ -20,10 +20,7 @@ namespace BeFaster.App.Solutions.CHK
 
             CountSkus(skus);
 
-            int totalPrice = CalculateTotalPrice(skus);
-            int totalDiscount = CalculateDiscount(skus);
-
-            return totalPrice;
+            return CalculateTotalPrice();
         }
 
         private static void CountSkus(string skus)
@@ -41,14 +38,15 @@ namespace BeFaster.App.Solutions.CHK
             }
         }
 
-        private static int CalculateDiscountedPrice(char productId, int count)
+        private static int CalculateDiscountedPrice(char productId, int currentItemQuantity, int actualProductPrice)
         {
-            int discount = 0;
-            foreach (char sku in skus)
-            {
-                if (SpecialOffers.ContainsKey(sku))
-            }
-            return discount;
+            int discountedPrice = 0;
+
+            var specialOffer = SpecialOffers[productId];
+            discountedPrice = currentItemQuantity / specialOffer.ItemQuantity * specialOffer.SpecialPrice;
+            discountedPrice += currentItemQuantity % specialOffer.ItemQuantity * actualProductPrice;
+
+            return discountedPrice;
         }
 
         private static int CalculateTotalPrice()
@@ -61,7 +59,7 @@ namespace BeFaster.App.Solutions.CHK
                 {
                     if (SpecialOffers.ContainsKey(skuCount.Key))
                     {
-                        totalPrice += CalculateDiscountedPrice(skuCount.Key, skuCount.Value);
+                        totalPrice += CalculateDiscountedPrice(skuCount.Key, skuCount.Value, product.Price);
                     }
                     totalPrice += product.Price * skuCount.Value;
                 }
@@ -74,4 +72,5 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
