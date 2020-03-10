@@ -30,18 +30,13 @@ namespace BeFaster.App.Solutions.CHK
         {
             foreach (char sku in skus)
             {
-                if(skuCount.ContainsKey(sku))
+                if(skuCounts.ContainsKey(sku))
                 {
-                    sku
-                }
-                var product = Products.FirstOrDefault(x => x.Id == sku);
-                if (product != null)
-                {
-                    totalPrice += product.Price;
+                    skuCounts[sku] = skuCounts[sku] + 1;
                 }
                 else
                 {
-                    return invalidInput;
+                    skuCounts.Add(sku, 1);
                 }
             }
         }
@@ -75,6 +70,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 
