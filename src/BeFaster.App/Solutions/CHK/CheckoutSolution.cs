@@ -7,7 +7,7 @@ namespace BeFaster.App.Solutions.CHK
     public static class CheckoutSolution
     {
         public static readonly IList<Product> Products = new List<Product>();
-        public static readonly IDictionary<char, SpecialOffer> SpecialOffers = new Dictionary<char, SpecialOffer>();
+        public static readonly IDictionary<char, IList<SpecialOffer>> SpecialOffers = new Dictionary<char, IList<SpecialOffer>>();
         
         private const int invalidInput = -1;
 
@@ -65,7 +65,7 @@ namespace BeFaster.App.Solutions.CHK
         private static int CalculateDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice)
         {
             int discountedPrice = 0;
-            var specialOffer = SpecialOffers[productId];
+            var specialOffer = SpecialOffers.All();
 
             discountedPrice = cartItemQuantity / specialOffer.ItemQuantity * specialOffer.SpecialPrice;
             discountedPrice += cartItemQuantity % specialOffer.ItemQuantity * actualProductPrice;
@@ -106,31 +106,44 @@ namespace BeFaster.App.Solutions.CHK
         private static void AddSpecialOffers()
         {
             SpecialOffers.Clear();
-            SpecialOffers.Add('A', new BuyMultipleForPriceReduction
-            {
-                ItemQuantity = 3,
-                SpecialPrice = 130,
-                OfferType = Enums.SpecialOfferType.BuyMultipleForPriceReduction
+            SpecialOffers.Add('A', new List<SpecialOffer> {
+                new BuyMultipleForPriceReduction
+                {
+                    ItemQuantity = 3,
+                    SpecialPrice = 130,
+                    OfferType = Enums.SpecialOfferType.BuyMultipleForPriceReduction
+                },
+                new BuyMultipleForPriceReduction
+                {
+                    ItemQuantity = 5,
+                    SpecialPrice = 200,
+                    OfferType = Enums.SpecialOfferType.BuyMultipleForPriceReduction
+                }
             });
-            SpecialOffers.Add('B', new BuyMultipleForPriceReduction
-            {
-                ItemQuantity = 2,
-                SpecialPrice = 45,
-                OfferType = Enums.SpecialOfferType.BuyMultipleForPriceReduction
-            });
-            SpecialOffers.Add('A', new BuyMultipleForPriceReduction
-            {
-                ItemQuantity = 5,
-                SpecialPrice = 200,
-                OfferType = Enums.SpecialOfferType.BuyMultipleForPriceReduction
-            });
-            SpecialOffers.Add('E', new BuyOneGetAnotherFree
-            {
-                ItemQuantity = 2,
-                FreeItemId = 'B',
-                OfferType = Enums.SpecialOfferType.BuyOneGetAnotherFree
+            SpecialOffers.Add('B', new List<SpecialOffer>{
+                new BuyMultipleForPriceReduction
+                {
+                    ItemQuantity = 2,
+                    SpecialPrice = 45,
+                    OfferType = Enums.SpecialOfferType.BuyMultipleForPriceReduction
+                } });
+            SpecialOffers.Add('A', new List<SpecialOffer>{
+                new BuyMultipleForPriceReduction
+                {
+                    ItemQuantity = 5,
+                    SpecialPrice = 200,
+                    OfferType = Enums.SpecialOfferType.BuyMultipleForPriceReduction
+                } });
+            SpecialOffers.Add('E', new List<SpecialOffer>{
+                new BuyOneGetAnotherFree
+                {
+                    ItemQuantity = 2,
+                    FreeItemId = 'B',
+                    OfferType = Enums.SpecialOfferType.BuyOneGetAnotherFree
+                }
             });
         }
     }
 }
+
 
