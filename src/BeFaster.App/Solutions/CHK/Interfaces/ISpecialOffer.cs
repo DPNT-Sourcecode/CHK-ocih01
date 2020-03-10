@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BeFaster.App.Solutions.CHK.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,8 @@ namespace BeFaster.App.Solutions.CHK.Interfaces
 {
     public interface ISpecialOffer
     {
-        int CalculateDiscountedPrice();
+        int ItemQuantity { get; set; }
+        SpecialOfferType OfferType { get; set; }
     }
 }
+
