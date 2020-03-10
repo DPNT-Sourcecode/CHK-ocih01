@@ -88,7 +88,14 @@
   },
   {
     "Id": "K",
-    "Price": 80
+    "Price": 80,
+    "SpecialOffers": [
+      {
+        "Type": 1,
+        "ItemQuantity": 2,
+        "SpecialPrice": 150
+      }
+    ]
   },
   {
     "Id": "L",
@@ -116,11 +123,25 @@
   },
   {
     "Id": "P",
-    "Price": 50
+    "Price": 50,
+    "SpecialOffers": [
+      {
+        "Type": 1,
+        "ItemQuantity": 5,
+        "SpecialPrice": 200
+      }
+    ]
   },
   {
     "Id": "Q",
-    "Price": 30
+    "Price": 30,
+    "SpecialOffers": [
+      {
+        "Type": 1,
+        "ItemQuantity": 3,
+        "SpecialPrice": 80
+      }
+    ]
   },
   {
     "Id": "R",
@@ -156,7 +177,19 @@
   },
   {
     "Id": "V",
-    "Price": 50
+    "Price": 50,
+    "SpecialOffers": [
+      {
+        "Type": 1,
+        "ItemQuantity": 2,
+        "SpecialPrice": 90
+      },
+      {
+        "Type": 1,
+        "ItemQuantity": 3,
+        "SpecialPrice": 130
+      }
+    ]
   },
   {
     "Id": "W",
@@ -175,5 +208,6 @@
     "Price": 50
   }
 ]
+
 
 
