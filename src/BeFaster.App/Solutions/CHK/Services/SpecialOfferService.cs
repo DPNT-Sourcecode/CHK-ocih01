@@ -19,21 +19,18 @@ namespace BeFaster.App.Solutions.CHK.Services
             int discountedPrice = 0;
             var specialOffers = _specialOffers[productId].OrderByDescending(x=>x.ItemQuantity);
 
-            foreach (var offer in specialOffers)
+            foreach (BuyMultipleForPriceReduction offer in specialOffers)
             {
-                if (offer is BuyMultipleForPriceReduction multiplePriceReductionOffer)
+                if (cartItemQuantity >= offer.ItemQuantity)
                 {
-                    if (cartItemQuantity >= offer.ItemQuantity)
-                    {
-                        discountedPrice += multiplePriceReductionOffer.GetDiscountedPrice(productId, cartItemQuantity, actualProductPrice);
-                        cartItemQuantity = cartItemQuantity - (offer.ItemQuantity * (cartItemQuantity / offer.ItemQuantity));
-                        if (cartItemQuantity == 0) break;
-                        continue;
-                    }
-                    else
-                    {
-                        discountedPrice += cartItemQuantity * actualProductPrice;
-                    }
+                    discountedPrice += offer.GetDiscountedPrice(productId, cartItemQuantity, actualProductPrice);
+                    cartItemQuantity = cartItemQuantity - (offer.ItemQuantity * (cartItemQuantity / offer.ItemQuantity));
+                    if (cartItemQuantity == 0) break;
+                    continue;
+                }
+                else
+                {
+                    discountedPrice += cartItemQuantity * actualProductPrice;
                 }
             }
             return discountedPrice;
@@ -65,4 +62,5 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
     }
 }
+
 
