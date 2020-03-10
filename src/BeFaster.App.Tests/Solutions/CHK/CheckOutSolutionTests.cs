@@ -25,7 +25,14 @@ namespace BeFaster.App.Tests.Solutions.CHK
         {
             Assert.AreEqual(invalidInput, CheckoutSolution.ComputePrice("  "));
         }
+
+        [TestMethod]
+        public void ComputePrice_Should_Return_InvalidInput_Given_Product_That_Does_NotExist_In_ProductsList()
+        {
+            Assert.AreEqual(invalidInput, CheckoutSolution.ComputePrice("  "));
+        }
     }
 }
+
 
 

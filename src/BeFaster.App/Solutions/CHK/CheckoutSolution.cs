@@ -3,16 +3,10 @@ using System.Collections.Generic;
 
 namespace BeFaster.App.Solutions.CHK
 {
-    public class CheckoutSolution
+    public static class CheckoutSolution
     {
-        private readonly IList<Product> products = new List<Product>();
-        private readonly IDictionary<int, SpecialOffer> specialOffers = new Dictionary<int, SpecialOffer>();
-
-        public CheckoutSolution(IList<Product> products, IDictionary<int, SpecialOffer> specialOffers)
-        {
-            this.products = products;
-            this.specialOffers = specialOffers;
-        }
+        public static readonly IList<Product> Products = new List<Product>();
+        public static readonly IDictionary<int, SpecialOffer> SpecialOffers = new Dictionary<int, SpecialOffer>();
 
         public static int ComputePrice(string skus)
         {
@@ -20,12 +14,13 @@ namespace BeFaster.App.Solutions.CHK
 
             if (string.IsNullOrWhiteSpace(skus)) { return invalidInput; }
 
-
+            if (Products.Count == 0) return invalidInput;
 
             return 0;
         }
     }
 }
+
 
 
 
