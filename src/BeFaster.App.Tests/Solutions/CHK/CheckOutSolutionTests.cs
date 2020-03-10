@@ -9,6 +9,8 @@ namespace BeFaster.App.Tests.Solutions.CHK
     {
         const int invalidInput = -1;
 
+        #region Invalid input tests
+
         [TestMethod]
         public void ComputePrice_Should_Return_InvalidInput_Given_Empty_SKU_string()
         {
@@ -48,6 +50,10 @@ namespace BeFaster.App.Tests.Solutions.CHK
             Assert.AreEqual(invalidInput, CheckoutSolution.ComputePrice("AZC"));
         }
 
+        #endregion
+
+        #region Products Only Tests
+
         [TestMethod]
         public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Single_SKU()
         {
@@ -76,6 +82,10 @@ namespace BeFaster.App.Tests.Solutions.CHK
             Assert.AreEqual(120, CheckoutSolution.ComputePrice("CDCDA"));
         }
 
+        #endregion
+
+        #region Special Offer Only Tests
+
         [TestMethod]
         public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Single_SKU_With_SpecialOffer()
         {
@@ -83,6 +93,16 @@ namespace BeFaster.App.Tests.Solutions.CHK
             AddSpecialOffers();
             Assert.AreEqual(50, CheckoutSolution.ComputePrice("A"));
         }
+
+        [TestMethod]
+        public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Multiple_SKU_With_SpecialOffer()
+        {
+            AddProducts();
+            AddSpecialOffers();
+            Assert.AreEqual(130, CheckoutSolution.ComputePrice("AAA"));
+        }
+
+        #endregion
 
         private void AddProducts()
         {
@@ -125,6 +145,7 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
     }
 }
+
 
 
 
