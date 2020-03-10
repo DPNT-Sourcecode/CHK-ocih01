@@ -21,19 +21,18 @@ namespace BeFaster.App.Solutions.CHK.Services
 
             foreach (BuyMultipleForPriceReduction offer in specialOffers)
             {
-                if (cartItemQuantity >= offer.ItemQuantity)
-                {
-                    discountedPrice += offer.GetDiscountedPrice(productId, cartItemQuantity, actualProductPrice);
-                    cartItemQuantity = cartItemQuantity - (offer.ItemQuantity * (cartItemQuantity / offer.ItemQuantity));
-                    if (cartItemQuantity == 0) break;
-                    continue;
-                }
-                else
-                {
-                    discountedPrice += cartItemQuantity * actualProductPrice;
-                    break;
-                }       
+                if (cartItemQuantity < offer.ItemQuantity) continue;
+
+                discountedPrice += offer.GetDiscountedPrice(productId, cartItemQuantity, actualProductPrice);
+                cartItemQuantity = cartItemQuantity - (offer.ItemQuantity * (cartItemQuantity / offer.ItemQuantity));
+                if (cartItemQuantity == 0) break;                   
             }
+
+            if (cartItemQuantity > 0)
+            {
+                discountedPrice += cartItemQuantity * actualProductPrice;
+            }
+            
             return discountedPrice;
         }
 
@@ -63,6 +62,7 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
     }
 }
+
 
 
 

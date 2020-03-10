@@ -157,7 +157,13 @@ namespace BeFaster.App.Tests.Solutions.CHK
         {
             Assert.AreEqual(285, CheckoutSolution.ComputePrice("EBAAAAAB"));
         }
+        [TestMethod]
+        public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Single_SKU_ThatHas_Multiple_Combinations_That_Satisfy_MultipleOffers_WithOtherRegularOffers()
+        {
+            Assert.AreEqual(285, CheckoutSolution.ComputePrice("AAAAAEEBAAABB"));
+        }
 
         #endregion
     }
 }
+
