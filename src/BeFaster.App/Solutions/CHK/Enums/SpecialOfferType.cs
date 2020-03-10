@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace BeFaster.App.Solutions.CHK.Enums
 {
-    class SpecialOfferType
+    public enum SpecialOfferType
     {
+        BuyOneGetAnotherFree,
+        BuyMultipleForPriceReduction
     }
 }
+
