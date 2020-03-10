@@ -6,11 +6,7 @@
 
         public int GetDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice)
         {
-            int discountedPrice = 0;
-
-            discountedPrice = cartItemQuantity / ItemQuantity * SpecialPrice;
-
-            return discountedPrice;
+            return cartItemQuantity / ItemQuantity * SpecialPrice;
         }
     }
 }
