@@ -106,21 +106,31 @@ namespace BeFaster.App.Solutions.CHK
         private static void AddSpecialOffers()
         {
             SpecialOffers.Clear();
-            SpecialOffers.Add('A', new SpecialOffer
+            SpecialOffers.Add('A', new BuyMultipleForPriceReduction
             {
                 ItemQuantity = 3,
-                SpecialPrice = 130
+                SpecialPrice = 130,
+                OfferType = Enums.SpecialOfferType.BuyMultipleForPriceReduction
             });
-            SpecialOffers.Add('B', new SpecialOffer
+            SpecialOffers.Add('B', new BuyMultipleForPriceReduction
             {
                 ItemQuantity = 2,
-                SpecialPrice = 45
+                SpecialPrice = 45,
+                OfferType = Enums.SpecialOfferType.BuyMultipleForPriceReduction
             });
-            SpecialOffers.Add('A', new SpecialOffer
+            SpecialOffers.Add('A', new BuyMultipleForPriceReduction
             {
                 ItemQuantity = 5,
-                SpecialPrice = 200
+                SpecialPrice = 200,
+                OfferType = Enums.SpecialOfferType.BuyMultipleForPriceReduction
+            });
+            SpecialOffers.Add('E', new BuyOneGetAnotherFree
+            {
+                ItemQuantity = 2,
+                FreeItemId = 'B',
+                OfferType = Enums.SpecialOfferType.BuyOneGetAnotherFree
             });
         }
     }
 }
+
