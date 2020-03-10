@@ -48,13 +48,15 @@ namespace BeFaster.App.Solutions.CHK
 
         private static IDictionary<char, int> HandleBuyOneProductGetAnotherProductFreeOffer(IDictionary<char, int> skuCounts)
         {
-            var buyOneGetOneOffers = SpecialOffers.Where(x => x.Value.Any(y=> y.GetType().Equals(typeof(BuyOneGetAnotherFree)))).ToDictionary(s => s.Key, s => (BuyOneGetAnotherFree)s.Value);
+            var offers = SpecialOffers.Where(x => x.Value.Any(y=> y.GetType().Equals(typeof(BuyOneGetAnotherFree))))
+                .ToDictionary(s => s.Key, s => s.Value.Where(y=>y.OfferType == Enums.SpecialOfferType.BuyMultipleForPriceReduction));
 
-            foreach(BuyOneGetAnotherFree buyOneGetOneOffer in buyOneGetOneOffers)
+            foreach(var offer in offers)
             {
-                if(skuCounts.Keys.Contains(buyOneGetOneOffer.Key) && skuCounts[buyOneGetOneOffer.Key] >= buyOneGetOneOffer.Value.)
+                var buyOneGetAnotherOffers = offer.Value.
+                if (skuCounts.Keys.Contains(buyOneGetOneOffer.Key) && skuCounts[buyOneGetOneOffer.Key] >= buyOneGetOneOffer.Value.ItemQuantity && skuCounts.Keys.Contains(buyOneGetOneOffer.Value.FreeItemId))
                 {
-                    var offer = bu
+                    skuCounts[buyOneGetOneOffer.Value.FreeItemId]
                 }
             }
 
@@ -164,6 +166,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 
