@@ -14,7 +14,7 @@ namespace BeFaster.App.Solutions.CHK
             this.specialOffers = specialOffers;
         }
 
-        public int ComputePrice(string skus)
+        public static int ComputePrice(string skus)
         {
             const int invalidInput = -1;
 
@@ -24,4 +24,5 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
