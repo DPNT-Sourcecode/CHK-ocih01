@@ -76,6 +76,14 @@ namespace BeFaster.App.Tests.Solutions.CHK
             Assert.AreEqual(120, CheckoutSolution.ComputePrice("CDCDA"));
         }
 
+        [TestMethod]
+        public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Single_SKU_With_SpecialOffer()
+        {
+            AddProducts();
+            AddSpecialOffers();
+            Assert.AreEqual(50, CheckoutSolution.ComputePrice("A"));
+        }
+
         private void AddProducts()
         {
             CheckoutSolution.Products.Clear();
@@ -117,6 +125,7 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
     }
 }
+
 
 
 
