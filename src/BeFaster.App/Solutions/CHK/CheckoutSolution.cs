@@ -7,7 +7,7 @@ namespace BeFaster.App.Solutions.CHK
     public class CheckoutSolution
     {
         public IList<Product> Products;
-        public IList<SpecialOffers> specialOffers;
+        public IDictionary<int, SpecialOffer> specialOffers;
 
         public int ComputePrice(string skus)
         {
@@ -19,4 +19,3 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
-
