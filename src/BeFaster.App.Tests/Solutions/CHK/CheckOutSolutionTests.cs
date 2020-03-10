@@ -131,7 +131,7 @@ namespace BeFaster.App.Tests.Solutions.CHK
         {
             AddProducts();
             AddSpecialOffers();
-            Assert.AreEqual(160, CheckoutSolution.ComputePrice("ABABABB"));
+            Assert.AreEqual(220, CheckoutSolution.ComputePrice("ABABABB"));
         }
 
 
@@ -194,3 +194,4 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
     }
 }
+
