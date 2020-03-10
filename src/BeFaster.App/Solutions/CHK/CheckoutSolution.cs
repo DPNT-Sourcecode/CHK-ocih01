@@ -1,13 +1,18 @@
 ﻿using BeFaster.App.Solutions.CHK.Models;
-using BeFaster.Runner.Exceptions;
 using System.Collections.Generic;
 
 namespace BeFaster.App.Solutions.CHK
 {
     public class CheckoutSolution
     {
-        public IList<Product> Products;
-        public IDictionary<int, SpecialOffer> specialOffers;
+        private readonly IList<Product> products;
+        private readonly IDictionary<int, SpecialOffer> specialOffers;
+
+        public CheckoutSolution(IList<Product> products, IDictionary<int, SpecialOffer> specialOffers)
+        {
+            this.products = products;
+            this.specialOffers = specialOffers;
+        }
 
         public int ComputePrice(string skus)
         {
@@ -19,3 +24,4 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
