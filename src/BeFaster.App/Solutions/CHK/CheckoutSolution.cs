@@ -149,7 +149,15 @@ namespace BeFaster.App.Solutions.CHK
                     FreeItemQuantity = 1
                 }
             });
-
+            SpecialOffers.Add('N', new List<ISpecialOffer>{
+                new BuyOneGetAnotherFree
+                {
+                    ItemQuantity = 3,
+                    FreeItemId = 'M',
+                    OfferType = Enums.SpecialOfferType.BuyOneGetAnotherFree,
+                    FreeItemQuantity = 1
+                }
+            });
             SpecialOffers.Add('F', new List<ISpecialOffer>{
                 new BuyOneGetAnotherFree
                 {
@@ -173,7 +181,43 @@ namespace BeFaster.App.Solutions.CHK
                     OfferType = Enums.SpecialOfferType.BuyMultipleForPriceReduction
                 }
             });
+            SpecialOffers.Add('K', new List<ISpecialOffer>{
+                new BuyMultipleForPriceReduction
+                {
+                    ItemQuantity = 2,
+                    SpecialPrice = 150,
+                    OfferType = Enums.SpecialOfferType.BuyMultipleForPriceReduction
+                } });
+           SpecialOffers.Add('P', new List<ISpecialOffer>{
+                new BuyMultipleForPriceReduction
+                {
+                    ItemQuantity = 5,
+                    SpecialPrice = 200,
+                    OfferType = Enums.SpecialOfferType.BuyMultipleForPriceReduction
+                } });
+            SpecialOffers.Add('Q', new List<ISpecialOffer>{
+                new BuyMultipleForPriceReduction
+                {
+                    ItemQuantity = 3,
+                    SpecialPrice = 80,
+                    OfferType = Enums.SpecialOfferType.BuyMultipleForPriceReduction
+                } });
+            SpecialOffers.Add('V', new List<ISpecialOffer>{
+                new BuyMultipleForPriceReduction
+                {
+                    ItemQuantity = 2,
+                    SpecialPrice = 90,
+                    OfferType = Enums.SpecialOfferType.BuyMultipleForPriceReduction
+                },
+                new BuyMultipleForPriceReduction
+                {
+                    ItemQuantity = 3,
+                    SpecialPrice = 130,
+                    OfferType = Enums.SpecialOfferType.BuyMultipleForPriceReduction
+                } }
+                );
         }
     }
 }
+
 
