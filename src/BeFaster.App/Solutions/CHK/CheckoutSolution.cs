@@ -48,7 +48,7 @@ namespace BeFaster.App.Solutions.CHK
 
         private static IDictionary<char, int> HandleBuyOneProductGetAnotherProductFreeOffer(IDictionary<char, int> skuCounts)
         {
-            var specialOffers = SpecialOffers.Where(x => x.Value.Any(y=> y.GetType().Equals(typeof(BuyOneGetAnotherFree)))).ToDictionary(c=> c, l => l);
+            var specialOffers = SpecialOffers.Where(x => x.Value.Any(y=> y.GetType().Equals(typeof(BuyOneGetAnotherFree)))).ToDictionary(s => s.Key, s => s.Value);
             return skuCounts;
         }
 
@@ -155,4 +155,5 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
