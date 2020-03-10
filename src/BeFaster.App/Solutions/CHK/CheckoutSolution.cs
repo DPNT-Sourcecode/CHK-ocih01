@@ -1,4 +1,5 @@
-﻿using BeFaster.App.Solutions.CHK.Models;
+﻿using BeFaster.App.Solutions.CHK.Interfaces;
+using BeFaster.App.Solutions.CHK.Models;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,7 +8,7 @@ namespace BeFaster.App.Solutions.CHK
     public static class CheckoutSolution
     {
         public static readonly IList<Product> Products = new List<Product>();
-        public static readonly IDictionary<char, IList<SpecialOffer>> SpecialOffers = new Dictionary<char, IList<SpecialOffer>>();
+        public static readonly IDictionary<char, IList<ISpecialOffer>> SpecialOffers = new Dictionary<char, IList<ISpecialOffer>>();
         
         private const int invalidInput = -1;
 
@@ -113,7 +114,7 @@ namespace BeFaster.App.Solutions.CHK
         private static void AddSpecialOffers()
         {
             SpecialOffers.Clear();
-            SpecialOffers.Add('A', new List<SpecialOffer> {
+            SpecialOffers.Add('A', new List<ISpecialOffer> {
                 new BuyMultipleForPriceReduction
                 {
                     ItemQuantity = 3,
@@ -127,7 +128,7 @@ namespace BeFaster.App.Solutions.CHK
                     OfferType = Enums.SpecialOfferType.BuyMultipleForPriceReduction
                 }
             });
-            SpecialOffers.Add('B', new List<SpecialOffer>{
+            SpecialOffers.Add('B', new List<ISpecialOffer>{
                 new BuyMultipleForPriceReduction
                 {
                     ItemQuantity = 2,
@@ -135,7 +136,7 @@ namespace BeFaster.App.Solutions.CHK
                     OfferType = Enums.SpecialOfferType.BuyMultipleForPriceReduction
                 } });
 
-            SpecialOffers.Add('E', new List<SpecialOffer>{
+            SpecialOffers.Add('E', new List<ISpecialOffer>{
                 new BuyOneGetAnotherFree
                 {
                     ItemQuantity = 2,
