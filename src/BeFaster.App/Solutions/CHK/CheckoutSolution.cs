@@ -5,8 +5,8 @@ namespace BeFaster.App.Solutions.CHK
 {
     public class CheckoutSolution
     {
-        private readonly IList<Product> products;
-        private readonly IDictionary<int, SpecialOffer> specialOffers;
+        private readonly IList<Product> products = new List<Product>();
+        private readonly IDictionary<int, SpecialOffer> specialOffers = new Dictionary<int, SpecialOffer>();
 
         public CheckoutSolution(IList<Product> products, IDictionary<int, SpecialOffer> specialOffers)
         {
@@ -20,9 +20,12 @@ namespace BeFaster.App.Solutions.CHK
 
             if (string.IsNullOrWhiteSpace(skus)) { return invalidInput; }
 
+
+
             return 0;
         }
     }
 }
+
 
 
