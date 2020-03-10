@@ -16,5 +16,15 @@ namespace BeFaster.App.Solutions.CHK.Models
     public class BuyMultipleForPriceReduction : SpecialOffer
     {
         public int SpecialPrice { get; set; }
+
+        private int CalculateDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice)
+        {
+            int discountedPrice = 0;
+
+            discountedPrice = cartItemQuantity / ItemQuantity * SpecialPrice;
+            discountedPrice += cartItemQuantity % ItemQuantity * actualProductPrice;
+
+            return discountedPrice;
+        }
     }
 }
