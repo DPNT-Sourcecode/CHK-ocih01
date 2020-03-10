@@ -178,12 +178,18 @@ namespace BeFaster.App.Tests.Solutions.CHK
             Assert.AreEqual(30, CheckoutSolution.ComputePrice("FFFF"));
         }
         [TestMethod]
-        public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Single_SKU_That_Satisfies_Multiple_BuyOneGetSameFree_Offer_1()
+        public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Single_SKU_That_Satisfies_Multiple_BuyOneGetSameFree_Offer()
         {
             Assert.AreEqual(50, CheckoutSolution.ComputePrice("FFFFFFF"));
+        }
+        [TestMethod]
+        public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Single_SKU_ThatDoesNot_Satisfy_BuyOneGetSameFree_Offer()
+        {
+            Assert.AreEqual(10, CheckoutSolution.ComputePrice("F"));
         }
 
         #endregion
     }
 }
+
 
