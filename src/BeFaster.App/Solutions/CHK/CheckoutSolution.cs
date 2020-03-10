@@ -1,4 +1,5 @@
 ﻿using BeFaster.App.Solutions.CHK.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,25 +13,25 @@ namespace BeFaster.App.Solutions.CHK
 
         public static int ComputePrice(string skus)
         {
-            int totalPrice = 0;
-
             if (string.IsNullOrWhiteSpace(skus)) { return invalidInput; }
 
             if (Products.Count == 0) return invalidInput;
 
-            foreach(char sku in skus)
-            {
-                var product = Products.FirstOrDefault(x => x.Id == sku);
-                if(product != null)
-                {
-                    totalPrice += product.Price;
-                }
-                else
-                {
-                    return invalidInput;
-                }
-            }
+            int totalPrice = CalculateTotalPrice(skus);
+            int totalDiscount = CalculateDiscount(skus);
+
             return totalPrice;
+        }
+
+        private static int CalculateDiscount(string skus)
+        {
+            int discount = 0;
+            foreach (char sku in skus)
+            {
+                SpecialOffers.ContainsKey(sku)
+             }
+
+            return discount;
         }
 
         private static int CalculateTotalPrice(string skus)
@@ -38,7 +39,7 @@ namespace BeFaster.App.Solutions.CHK
             int totalPrice = 0;
             foreach (char sku in skus)
             {
-                var product = Products.FirstOrDefault(x => x.Id == sku);
+                var product = Products.FirstOrDefault(x => x.Id == sku);                
                 if (product != null)
                 {
                     totalPrice += product.Price;
@@ -52,4 +53,5 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
