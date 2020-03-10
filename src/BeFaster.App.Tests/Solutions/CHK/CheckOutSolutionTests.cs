@@ -119,11 +119,28 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
 
         [TestMethod]
-        public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Multiple_SKU_That_has_Multiple_Combination_That_Satisfies_SpecialOffer()
+        public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Multiple_SKU_That_has_SingleCombination_That_Satisfies_SpecialOffer()
         {
             AddProducts();
             AddSpecialOffers();
             Assert.AreEqual(175, CheckoutSolution.ComputePrice("ABABA"));
+        }
+
+        [TestMethod]
+        public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Multiple_SKU_That_has_Multiple_Combination_That_Satisfies_SpecialOffer()
+        {
+            AddProducts();
+            AddSpecialOffers();
+            Assert.AreEqual(220, CheckoutSolution.ComputePrice("ABABABB"));
+        }
+
+
+        [TestMethod]
+        public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Multiple_SKU_That_Satisfies_SpecialOffer_Along_With_Regular_SKU()
+        {
+            AddProducts();
+            AddSpecialOffers();
+            Assert.AreEqual(215, CheckoutSolution.ComputePrice("ABABACC"));
         }
 
         #endregion
@@ -169,4 +186,5 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
     }
 }
+
 
