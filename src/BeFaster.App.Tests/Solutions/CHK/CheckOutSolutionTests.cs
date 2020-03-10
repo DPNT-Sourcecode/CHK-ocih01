@@ -35,6 +35,20 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
 
         [TestMethod]
+        public void ComputePrice_Should_Return_InvalidInput_Given_SKU_That_Does_Not_Exist_In_ProductsList()
+        {
+            AddProducts();
+            Assert.AreEqual(invalidInput, CheckoutSolution.ComputePrice("Z"));
+        }
+
+        [TestMethod]
+        public void ComputePrice_Should_Return_InvalidInput_Given_SKU_That_Does_Not_Exist_In_ProductsList_With_Other_Valid_SKUs()
+        {
+            AddProducts();
+            Assert.AreEqual(invalidInput, CheckoutSolution.ComputePrice("AZC"));
+        }
+
+        [TestMethod]
         public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Single_SKU()
         {
             AddProducts();
@@ -86,8 +100,34 @@ namespace BeFaster.App.Tests.Solutions.CHK
                 Price = 15
             });
         }
+
+        private void AddSpecialOffers()
+        {
+            CheckoutSolution.SpecialOffers.Clear();
+            CheckoutSolution.Products.Add(new Product
+            {
+                Id = 'A',
+                Price = 50
+            });
+            CheckoutSolution.Products.Add(new Product
+            {
+                Id = 'B',
+                Price = 30
+            });
+            CheckoutSolution.Products.Add(new Product
+            {
+                Id = 'C',
+                Price = 20
+            });
+            CheckoutSolution.Products.Add(new Product
+            {
+                Id = 'D',
+                Price = 15
+            });
+        }
     }
 }
+
 
 
 
