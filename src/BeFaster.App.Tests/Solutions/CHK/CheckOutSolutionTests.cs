@@ -1,6 +1,7 @@
 ﻿using BeFaster.App.Solutions.CHK;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using App.Solutions.CHK.Models.Product;
+using BeFaster.App.Solutions.CHK.Models;
+using System.Collections.Generic;
 
 namespace BeFaster.App.Tests.Solutions.CHK
 {
@@ -37,11 +38,7 @@ namespace BeFaster.App.Tests.Solutions.CHK
         [TestMethod]
         public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Single_SKU_That_Does_Exist_In_ProductList()
         {
-            CheckoutSolution.Products.Add(new App.Solutions.CHK.Models.Product
-            {
-                Id = 'A',
-                Price = 10
-            });
+           
 
             Assert.AreEqual(10, CheckoutSolution.ComputePrice("A"));
         }
@@ -57,6 +54,31 @@ namespace BeFaster.App.Tests.Solutions.CHK
 
             Assert.AreEqual(10, CheckoutSolution.ComputePrice("A"));
         }
+
+        private void AddProducts()
+        {
+            CheckoutSolution.Products = new List<Product>( new Product
+            {
+                Id = 'A',
+                Price = 50
+            },
+            new Product
+            {
+                Id = 'B',
+                Price = 30
+            },
+            new Product
+            {
+                Id = 'C',
+                Price = 20
+            },
+            new Product
+            {
+                Id = 'D',
+                Price = 15
+            });
+        }
     }
 }
+
 
