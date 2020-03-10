@@ -9,7 +9,6 @@
             int discountedPrice = 0;
 
             discountedPrice = cartItemQuantity / ItemQuantity * SpecialPrice;
-            discountedPrice += cartItemQuantity % ItemQuantity * actualProductPrice;
 
             return discountedPrice;
         }
