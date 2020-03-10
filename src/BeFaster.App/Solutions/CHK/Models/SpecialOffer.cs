@@ -17,7 +17,7 @@ namespace BeFaster.App.Solutions.CHK.Models
     {
         public int SpecialPrice { get; set; }
 
-        private int GetDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice)
+        public int GetDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice)
         {
             int discountedPrice = 0;
 
@@ -28,3 +28,4 @@ namespace BeFaster.App.Solutions.CHK.Models
         }
     }
 }
+
