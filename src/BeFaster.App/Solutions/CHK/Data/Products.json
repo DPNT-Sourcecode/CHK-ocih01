@@ -1,11 +1,30 @@
 [
   {
     "Id": "A",
-    "Price": 50
+    "Price": 50,
+    "SpecialOffers": [
+      {
+        "Type": 1,
+        "ItemQuantity": 3,
+        "SpecialPrice": 130
+      },
+      {
+        "Type": 1,
+        "ItemQuantity": 5,
+        "SpecialPrice": 200
+      }
+    ]
   },
   {
     "Id": "B",
-    "Price": 30
+    "Price": 30,
+    "SpecialOffers": [
+      {
+        "Type": 1,
+        "ItemQuantity": 2,
+        "SpecialPrice": 45
+      }
+    ]
   },
   {
     "Id": "C",
@@ -17,11 +36,27 @@
   },
   {
     "Id": "E",
-    "Price": 40
+    "Price": 40,
+    "SpecialOffers": [
+      {
+        "Type": 2,
+        "ItemQuantity": 2,
+        "FreeItemId": "B",
+        "FreeItemQuantity" :  1
+      }
+    ]
   },
   {
     "Id": "F",
-    "Price": 10
+    "Price": 10,
+    "SpecialOffers": [
+      {
+        "Type": 2,
+        "ItemQuantity": 2,
+        "FreeItemId": "F",
+        "FreeItemQuantity": 1
+      }
+    ]
   },
   {
     "Id": "G",
@@ -29,7 +64,19 @@
   },
   {
     "Id": "H",
-    "Price": 10
+    "Price": 10,
+    "SpecialOffers": [
+      {
+        "Type": 1,
+        "ItemQuantity": 5,
+        "SpecialPrice": 45
+      },
+      {
+        "Type": 1,
+        "ItemQuantity": 10,
+        "SpecialPrice": 80
+      }
+    ]
   },
   {
     "Id": "I",
@@ -53,7 +100,15 @@
   },
   {
     "Id": "N",
-    "Price": 40
+    "Price": 40,
+    "SpecialOffers": [
+      {
+        "Type": 2,
+        "ItemQuantity": 3,
+        "FreeItemId": "M",
+        "FreeItemQuantity": 1
+      }
+    ]
   },
   {
     "Id": "O",
@@ -69,7 +124,15 @@
   },
   {
     "Id": "R",
-    "Price": 50
+    "Price": 50,
+    "SpecialOffers": [
+      {
+        "Type": 2,
+        "ItemQuantity": 3,
+        "FreeItemId": "Q",
+        "FreeItemQuantity": 1
+      }
+    ]
   },
   {
     "Id": "S",
@@ -81,7 +144,15 @@
   },
   {
     "Id": "U",
-    "Price": 40
+    "Price": 40,
+    "SpecialOffers": [
+      {
+        "Type": 2,
+        "ItemQuantity": 3,
+        "FreeItemId": "U",
+        "FreeItemQuantity": 1
+      }
+    ]
   },
   {
     "Id": "V",
@@ -104,4 +175,5 @@
     "Price": 50
   }
 ]
+
 
