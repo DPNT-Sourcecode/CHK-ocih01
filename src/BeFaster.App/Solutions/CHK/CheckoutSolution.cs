@@ -73,8 +73,9 @@ namespace BeFaster.App.Solutions.CHK
         private static int GetTotalPrice(IDictionary<char, int> skuCounts)
         {
             int totalPrice = 0;
-            var offers = SpecialOffers.Where(x => x.Value.Any(y => y.GetType().Equals(typeof(BuyMultipleForPriceReduction))))
-               .ToDictionary(s => s.Key, s => s.Value.Where(z => z.OfferType == Enums.SpecialOfferType.BuyMultipleForPriceReduction).ToList());
+
+            //Filter Offers related to BuyMultipleForPriceReduction
+            var offers = SpecialOffers.ToDictionary(s => s.Key, s => s.Value.Where(z => z.OfferType == Enums.SpecialOfferType.BuyMultipleForPriceReduction).ToList());
 
             foreach (var skuCount in skuCounts)
             {
@@ -177,3 +178,4 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
