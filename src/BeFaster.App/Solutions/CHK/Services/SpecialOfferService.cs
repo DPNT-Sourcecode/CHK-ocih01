@@ -17,7 +17,7 @@ namespace BeFaster.App.Solutions.CHK.Services
         public int GetDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice)
         {
             int discountedPrice = 0;
-            var specialOffers = _specialOffers[productId];
+            var specialOffers = _specialOffers[productId].OrderByDescending(x=>x.ItemQuantity);
             bool isFirstPriceCalculation = true;
 
             foreach (var offer in specialOffers)
@@ -58,3 +58,4 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
     }
 }
+
