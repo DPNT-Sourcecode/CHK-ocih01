@@ -75,7 +75,8 @@ namespace BeFaster.App.Solutions.CHK
             int totalPrice = 0;
 
             //Filter Offers related to BuyMultipleForPriceReduction
-            var offers = SpecialOffers.ToDictionary(s => s.Key, s => s.Value.Where(z => z.OfferType == Enums.SpecialOfferType.BuyMultipleForPriceReduction).ToList());
+            var offers = SpecialOffers.Where(x => x.Value.Any(y => y.GetType().Equals(typeof(BuyMultipleForPriceReduction))))
+               .ToDictionary(s => s.Key, s => s.Value.Where(z => z.OfferType == Enums.SpecialOfferType.BuyMultipleForPriceReduction).ToList());
 
             foreach (var skuCount in skuCounts)
             {
@@ -178,4 +179,5 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
