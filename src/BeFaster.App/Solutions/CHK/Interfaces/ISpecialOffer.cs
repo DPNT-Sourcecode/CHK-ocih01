@@ -11,4 +11,3 @@ namespace BeFaster.App.Solutions.CHK.Interfaces
         int CalculateDiscountedPrice();
     }
 }
-

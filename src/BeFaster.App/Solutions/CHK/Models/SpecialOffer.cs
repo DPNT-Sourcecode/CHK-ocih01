@@ -28,4 +28,3 @@ namespace BeFaster.App.Solutions.CHK.Models
         }
     }
 }
-
