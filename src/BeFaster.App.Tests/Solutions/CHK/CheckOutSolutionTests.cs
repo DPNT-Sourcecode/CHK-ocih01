@@ -35,23 +35,31 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
 
         [TestMethod]
-        public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Single_SKU_That_Does_Exist_In_ProductList()
+        public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Single_SKU()
         {
-           
-
-            Assert.AreEqual(10, CheckoutSolution.ComputePrice("A"));
+            AddProducts();
+            Assert.AreEqual(50, CheckoutSolution.ComputePrice("A"));
         }
 
         [TestMethod]
-        public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Multiple_SKUs_That_Does_Exist_In_ProductList()
+        public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Multiple_Distinct_SKUs()
         {
-            CheckoutSolution.Products.Add(new App.Solutions.CHK.Models.Product
-            {
-                Id = 'A',
-                Price = 10
-            });
+            AddProducts();
+            Assert.AreEqual(35, CheckoutSolution.ComputePrice("CD"));
+        }
 
-            Assert.AreEqual(10, CheckoutSolution.ComputePrice("A"));
+        [TestMethod]
+        public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Multiple_Repeated_SKUs()
+        {
+            AddProducts();
+            Assert.AreEqual(40, CheckoutSolution.ComputePrice("CC"));
+        }
+
+        [TestMethod]
+        public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Multiple_Repeated_And_NonRepeated_SKUs()
+        {
+            AddProducts();
+            Assert.AreEqual(40, CheckoutSolution.ComputePrice("CC"));
         }
 
         private void AddProducts()
@@ -80,6 +88,7 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
     }
 }
+
 
 
 
