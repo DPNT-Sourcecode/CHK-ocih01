@@ -53,12 +53,16 @@ namespace BeFaster.App.Solutions.CHK
 
             foreach(var offer in offers)
             {
-                var buyOneGetOneOffer = offer.Value as BuyOneGetAnotherFree;
-                if (skuCounts.Keys.Contains(offer.Key) && skuCounts[offer.Key] >= buyOneGetOneOffer.ItemQuantity && skuCounts.Keys.Contains(buyOneGetOneOffer.FreeItemId))
+                if (skuCounts.Keys.Contains(offer.Key))
                 {
-                    if(skuCounts.Keys.Contains(buyOneGetOneOffer.FreeItemId)) {
-                        var itemCountAfterReduction = skuCounts[buyOneGetOneOffer.FreeItemId] - buyOneGetOneOffer.FreeItemQuantity;
-                        skuCounts[buyOneGetOneOffer.FreeItemId] = itemCountAfterReduction > 0 ? itemCountAfterReduction : 0;
+                    foreach (BuyOneGetAnotherFree buyOneGetOneOffer in offer.Value)
+                    {
+                        if (skuCounts[offer.Key] >= buyOneGetOneOffer.ItemQuantity && skuCounts.Keys.Contains(buyOneGetOneOffer.FreeItemId))
+                        {
+                            var numberOFItemsToReduce = (skuCounts[offer.Key] / buyOneGetOneOffer.ItemQuantity) * buyOneGetOneOffer.FreeItemQuantity;
+                            int itemCountAfterReduction = skuCounts[buyOneGetOneOffer.FreeItemId] - numberOFItemsToReduce;
+                            skuCounts[buyOneGetOneOffer.FreeItemId] = itemCountAfterReduction > 0 ? itemCountAfterReduction : 0;
+                        }
                     }
                 }
             }
@@ -170,5 +174,6 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
