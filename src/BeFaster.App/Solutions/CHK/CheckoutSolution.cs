@@ -96,6 +96,11 @@ namespace BeFaster.App.Solutions.CHK
                 Id = 'D',
                 Price = 15
             });
+            Products.Add(new Product
+            {
+                Id = 'E',
+                Price = 40
+            });
         }
 
         private static void AddSpecialOffers()
@@ -111,6 +116,12 @@ namespace BeFaster.App.Solutions.CHK
                 ItemQuantity = 2,
                 SpecialPrice = 45
             });
+            SpecialOffers.Add('A', new SpecialOffer
+            {
+                ItemQuantity = 5,
+                SpecialPrice = 200
+            });
         }
     }
 }
+
