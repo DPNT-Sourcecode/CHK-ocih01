@@ -1,5 +1,6 @@
 ﻿using BeFaster.App.Solutions.CHK.Interfaces;
 using BeFaster.App.Solutions.CHK.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -50,9 +51,16 @@ namespace BeFaster.App.Solutions.CHK.Services
                     {
                         if (skuCounts[offer.Key] >= buyOneGetOneOffer.ItemQuantity && skuCounts.Keys.Contains(buyOneGetOneOffer.FreeItemId))
                         {
-                            var numberOFItemsToReduce = (skuCounts[offer.Key] / buyOneGetOneOffer.ItemQuantity) * buyOneGetOneOffer.FreeItemQuantity;
-                            int itemCountAfterReduction = skuCounts[buyOneGetOneOffer.FreeItemId] - numberOFItemsToReduce;
-                            skuCounts[buyOneGetOneOffer.FreeItemId] = itemCountAfterReduction > 0 ? itemCountAfterReduction : 0;
+                            if (offer.Key == buyOneGetOneOffer.FreeItemId)
+                            {
+                                skuCounts = ApplyBuyOneProductGetSameProductFreeOffer(skuCounts, buyOneGetOneOffer);
+                            }
+                            else
+                            {
+                                var numberOfItemsToReduce = (skuCounts[offer.Key] / buyOneGetOneOffer.ItemQuantity) * buyOneGetOneOffer.FreeItemQuantity;
+                                int itemCountAfterReduction = skuCounts[buyOneGetOneOffer.FreeItemId] - numberOfItemsToReduce;
+                                skuCounts[buyOneGetOneOffer.FreeItemId] = itemCountAfterReduction > 0 ? itemCountAfterReduction : 0;
+                            }
                         }
                     }
                 }
@@ -60,5 +68,21 @@ namespace BeFaster.App.Solutions.CHK.Services
 
             return skuCounts;
         }
+
+        private IDictionary<char, int> ApplyBuyOneProductGetSameProductFreeOffer(IDictionary<char, int> skuCounts, BuyOneGetAnotherFree buyOneGetOneOffer)
+        {
+            int productItemCount = skuCounts[buyOneGetOneOffer.FreeItemId];
+            while (productItemCount >= buyOneGetOneOffer.ItemQuantity)
+            {
+                productItemCount -= buyOneGetOneOffer.ItemQuantity;
+                if(productItemCount >= buyOneGetOneOffer.FreeItemQuantity)
+                {
+                    productItemCount -= buyOneGetOneOffer.FreeItemQuantity;
+                    skuCounts[buyOneGetOneOffer.FreeItemId] -= buyOneGetOneOffer.FreeItemQuantity;
+                }
+            }
+            return skuCounts;
+        }
     }
 }
+
