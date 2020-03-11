@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace BeFaster.App.Solutions.CHK.Models
 {
-    class BuyInBulkFromAGroupForPriceReductionOffer
+    public class BuyInBulkFromAGroupForPriceReductionOffer : SpecialOffer
     {
+        public List<char> Products { get; set; }
     }
 }
+
