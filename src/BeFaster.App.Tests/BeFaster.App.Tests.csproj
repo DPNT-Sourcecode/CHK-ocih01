@@ -84,7 +84,9 @@
       <Name>BeFaster.App</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Solutions\CHK\UnitTests\Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -96,3 +98,4 @@
   </Target>
   <Import Project="..\..\packages\MSTest.TestAdapter.2.1.0\build\net45\MSTest.TestAdapter.targets" Condition="Exists('..\..\packages\MSTest.TestAdapter.2.1.0\build\net45\MSTest.TestAdapter.targets')" />
 </Project>
+

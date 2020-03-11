@@ -1,6 +1,5 @@
 ﻿using BeFaster.App.Solutions.CHK.Interfaces;
 using BeFaster.App.Solutions.CHK.Models;
-using BeFaster.App.Solutions.CHK.Repositories;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,7 +7,12 @@ namespace BeFaster.App.Solutions.CHK.Services
 {
     public class SpecialOfferService : ISpecialOfferService
     {
-        private static readonly ISpecialOffersRepository specialOffersRepository = new SpecialOffersRepository();
+        private readonly ISpecialOffersRepository specialOffersRepository;
+
+        public SpecialOfferService(ISpecialOffersRepository specialOffersRepository)
+        {
+            this.specialOffersRepository = specialOffersRepository;
+        }
 
         public int GetDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice)
         {
@@ -84,3 +88,4 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
     }
 }
+

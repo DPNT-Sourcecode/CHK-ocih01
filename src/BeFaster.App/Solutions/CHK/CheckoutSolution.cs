@@ -7,7 +7,7 @@ namespace BeFaster.App.Solutions.CHK
 {
     public static class CheckoutSolution
     {
-        private static readonly ISpecialOfferService specialOfferService = new SpecialOfferService();
+        private static readonly ISpecialOfferService specialOfferService = new SpecialOfferService( new SpecialOffersRepository());
         private static readonly IProductsRepository productsRepository = new ProductsRepository();        
 
         private const int invalidInput = -1;
@@ -58,4 +58,5 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
