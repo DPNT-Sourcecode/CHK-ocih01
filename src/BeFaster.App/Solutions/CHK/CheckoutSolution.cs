@@ -1,4 +1,5 @@
 ﻿using BeFaster.App.Solutions.CHK.Interfaces;
+using BeFaster.App.Solutions.CHK.Models;
 using BeFaster.App.Solutions.CHK.Repositories;
 using BeFaster.App.Solutions.CHK.Services;
 using System.Collections.Generic;
@@ -10,7 +11,6 @@ namespace BeFaster.App.Solutions.CHK
     {
         private static readonly ISpecialOfferService specialOfferService = new SpecialOfferService();
         private static readonly IProductsRepository productsRepository = new ProductsRepository();
-
         private static readonly ISpecialOffersRepository specialOffersRepository = new SpecialOffersRepository();
 
         private const int invalidInput = -1;
@@ -40,7 +40,7 @@ namespace BeFaster.App.Solutions.CHK
                     skuCounts.Add(sku, 1);
                 }
             }
-            var buyOneGetAnotherFreeOffers = specialOffersRepository.GetSpecialOffersByType<BuyOneGetAnotherFreeOffer>();
+            var buyOneGetAnotherFreeOffers = specialOffersRepository.GetSpecialOffersByType<BuyOneGetAnotherFreeOffer>().ToDictionary(x=>x.ProductId, x=>x);
             return specialOfferService.ApplyBuyOneProductGetAnotherProductFreeOffer(skuCounts, buyOneGetAnotherFreeOffers);
         }
 
@@ -67,7 +67,7 @@ namespace BeFaster.App.Solutions.CHK
             }
             return totalPrice;
         }
-
     }
 }
+
 
