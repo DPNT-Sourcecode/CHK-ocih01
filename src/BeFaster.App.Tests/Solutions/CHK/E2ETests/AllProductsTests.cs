@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace BeFaster.App.Tests.Solutions.CHK.AllProductsTests
+namespace BeFaster.App.Tests.Solutions.CHK.E2ETests
 {
     [TestClass]
     public class AllProductsTests
@@ -84,4 +84,5 @@ namespace BeFaster.App.Tests.Solutions.CHK.AllProductsTests
         #endregion
     }
 }
+
 
