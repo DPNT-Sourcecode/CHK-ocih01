@@ -81,12 +81,15 @@ namespace BeFaster.App.Tests.Solutions.CHK.UnitTests.Services
         [TestMethod]
         public void ApplyBuyOneProductGetAnotherProductFreeOffer_Should_Return_Correct_Counts_Given_No_BuyOneGetOneOffers()
         {
-            mockSpecialOffersRepository.Setup(x => x.GetSpecialOffersByType<BuyMultipleOfSameForPriceReductionOffer>()).Verifiable();
+            mockSpecialOffersRepository.Setup(x => x.GetSpecialOffersByType<BuyOneGetAnotherFreeOffer>()).Verifiable();
 
-            var price = specialOfferService.GetDiscountedPrice('C', 2, 50);
+            var skuCounts = new Dictionary<char, int>(1);
+            skuCounts.Add('A', 2);
 
-            Assert.AreEqual(100, price);
-            mockSpecialOffersRepository.Verify(x => x.GetSpecialOffersByType<BuyMultipleOfSameForPriceReductionOffer>(), Times.Once);
+            var actualSkuCounts = specialOfferService.ApplyBuyOneProductGetAnotherProductFreeOffer(skuCounts);
+
+            Assert.AreEqual(skuCounts, actualSkuCounts);
+            mockSpecialOffersRepository.Verify(x => x.GetSpecialOffersByType<BuyOneGetAnotherFreeOffer>(), Times.Once);
         }
 
         #endregion
@@ -113,5 +116,6 @@ namespace BeFaster.App.Tests.Solutions.CHK.UnitTests.Services
         }
     }
 }
+
 
 
