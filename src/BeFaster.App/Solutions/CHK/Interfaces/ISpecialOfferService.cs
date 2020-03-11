@@ -9,4 +9,3 @@ namespace BeFaster.App.Solutions.CHK.Interfaces
         IDictionary<char, int> ApplyBuyOneProductGetAnotherProductFreeOffer(IDictionary<char, int> skuCounts, Dictionary<char, BuyOneGetAnotherFreeOffer> offers);
     }
 }
-

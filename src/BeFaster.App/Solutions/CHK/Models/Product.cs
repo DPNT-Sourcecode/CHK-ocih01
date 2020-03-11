@@ -11,4 +11,3 @@ namespace BeFaster.App.Solutions.CHK.Models
         public BuyOneGetAnotherFreeOffer BuyOneGetAnotherFreeOffer { get; set; }
     }
 }
-

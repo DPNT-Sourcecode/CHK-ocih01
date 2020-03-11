@@ -8,5 +8,3 @@ namespace BeFaster.App.Solutions.CHK.Models
         public int SpecialPrice { get; set; }
     }
 }
-
-
