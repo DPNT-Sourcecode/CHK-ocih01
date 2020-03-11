@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using BeFaster.App.Solutions.CHK.Enums;
 using BeFaster.App.Solutions.CHK.Interfaces;
 using BeFaster.App.Solutions.CHK.Models;
 
@@ -82,6 +81,66 @@ namespace BeFaster.App.Solutions.CHK.Repositories
                     SpecialPrice = 130,
                     OfferType = Enums.SpecialOfferType.BuyMultipleOfSameForPriceReduction
                 },
+                new BuyMultipleOfSameForPriceReductionOffer
+                {
+                    ProductId = 'S',
+                    ItemQuantity = 3,
+                    SpecialPrice = 45,
+                    IsGroupingAllowed = true,
+                    CombinationProducts = new List<char>
+                    {
+                        'T', 'X', 'Y', 'Z'
+                    },
+                    OfferType = Enums.SpecialOfferType.BuyMultipleOfSameForPriceReduction
+                },
+                new BuyMultipleOfSameForPriceReductionOffer
+                {
+                    ProductId = 'T',
+                    ItemQuantity = 3,
+                    SpecialPrice = 45,
+                    IsGroupingAllowed = true,
+                    CombinationProducts = new List<char>
+                    {
+                        'S', 'X', 'Y', 'Z'
+                    },
+                    OfferType = Enums.SpecialOfferType.BuyMultipleOfSameForPriceReduction
+                },
+                new BuyMultipleOfSameForPriceReductionOffer
+                {
+                    ProductId = 'X',
+                    ItemQuantity = 3,
+                    SpecialPrice = 45,
+                    IsGroupingAllowed = true,
+                    CombinationProducts = new List<char>
+                    {
+                        'S', 'T', 'Y', 'Z'
+                    },
+                    OfferType = Enums.SpecialOfferType.BuyMultipleOfSameForPriceReduction
+                },
+                new BuyMultipleOfSameForPriceReductionOffer
+                {
+                    ProductId = 'Y',
+                    ItemQuantity = 3,
+                    SpecialPrice = 45,
+                    IsGroupingAllowed = true,
+                    CombinationProducts = new List<char>
+                    {
+                        'S', 'T', 'X', 'Z'
+                    },
+                    OfferType = Enums.SpecialOfferType.BuyMultipleOfSameForPriceReduction
+                },
+                new BuyMultipleOfSameForPriceReductionOffer
+                {
+                    ProductId = 'Z',
+                    ItemQuantity = 3,
+                    SpecialPrice = 45,
+                    IsGroupingAllowed = true,
+                    CombinationProducts = new List<char>
+                    {
+                        'S', 'T', 'X', 'Y'
+                    },
+                    OfferType = Enums.SpecialOfferType.BuyMultipleOfSameForPriceReduction
+                },
                 new BuyOneGetAnotherFreeOffer
                 {
                     ProductId = 'E',
@@ -120,16 +179,6 @@ namespace BeFaster.App.Solutions.CHK.Repositories
                     ItemQuantity = 3,
                     FreeItemQuantity = 1,
                     OfferType = Enums.SpecialOfferType.BuyOneGetAnotherFree
-                },
-                new BuyInBulkFromAGroupForPriceReductionOffer
-                {
-                    Products = new List<char>
-                    {
-                        'S', 'T', 'X', 'Y', 'Z'
-                    },
-                    ItemQuantity = 3,
-                    SpecialPrice = 45,
-                    OfferType = Enums.SpecialOfferType.BuyInBulkFromAGroupForPriceReductionOffer
                 }
             };
         }
@@ -140,3 +189,4 @@ namespace BeFaster.App.Solutions.CHK.Repositories
         }
     }
 }
+
