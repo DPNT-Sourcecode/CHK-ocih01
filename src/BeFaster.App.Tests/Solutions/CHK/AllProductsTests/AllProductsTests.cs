@@ -43,13 +43,38 @@ namespace BeFaster.App.Tests.Solutions.CHK.AllProductsTests
 
         [TestMethod]
         public void ComputePrice_Should_Return_CorrectPrice_For_Product_H_Given_MultipleValues()
-        {
-            
+        {            
             Assert.AreEqual(45, CheckoutSolution.ComputePrice("HHHHH"));
             Assert.AreEqual(80, CheckoutSolution.ComputePrice("HHHHHHHHHH"));
+        }
 
+        [TestMethod]
+        public void ComputePrice_Should_Return_CorrectPrice_For_Product_K_Given_MultipleValues()
+        {
+            Assert.AreEqual(150, CheckoutSolution.ComputePrice("KK"));
+        }
+
+        [TestMethod]
+        public void ComputePrice_Should_Return_CorrectPrice_For_Product_P_Given_MultipleValues()
+        {
+            Assert.AreEqual(200, CheckoutSolution.ComputePrice("PPPPP"));
+        }
+        [TestMethod]
+        public void ComputePrice_Should_Return_CorrectPrice_For_Product_Q_Given_MultipleValues()
+        {
+            Assert.AreEqual(80, CheckoutSolution.ComputePrice("QQQ"));
+        }
+        [TestMethod]
+        public void ComputePrice_Should_Return_CorrectPrice_For_Product_V_Given_MultipleValues()
+        {
+            Assert.AreEqual(90, CheckoutSolution.ComputePrice("VV"));
+            Assert.AreEqual(130, CheckoutSolution.ComputePrice("VVV"));
+        }
+
+        [TestMethod]
+        public void ComputePrice_Should_Return_CorrectPrice_For_Product_N_Given_MultipleValues_Combined_With_M()
+        {
+            Assert.AreEqual(120, CheckoutSolution.ComputePrice("NNNM"));
         }
     }
 }
-
-
