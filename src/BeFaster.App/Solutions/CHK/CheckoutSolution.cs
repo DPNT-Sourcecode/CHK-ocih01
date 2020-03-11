@@ -1,5 +1,6 @@
 ﻿using BeFaster.App.Solutions.CHK.Interfaces;
 using BeFaster.App.Solutions.CHK.Models;
+using BeFaster.App.Solutions.CHK.Repositories;
 using BeFaster.App.Solutions.CHK.Services;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -13,6 +14,8 @@ namespace BeFaster.App.Solutions.CHK
         private static IDictionary<char, Product> products = GetProducts();
         private static readonly Dictionary<char, BuyOneGetAnotherFreeOffer> buyOneGetAnotherProductOffers = GetBuyOneGetAnotherProductOffersOffers();
         private static readonly ISpecialOfferService specialOfferService = new SpecialOfferService();
+        private static readonly ISpecialOffers productsRepository = new ProductsRepository();
+        private static readonly ISpecialOffers specialOffersRepository = new SpecialOffersRepository();
 
         private const int invalidInput = -1;
 
@@ -54,7 +57,9 @@ namespace BeFaster.App.Solutions.CHK
                 {
                     var product = products[skuCount.Key];
                     var offers = product.BuyMultipleForPriceReductionOffers;
-                    totalPrice += offers != null && offers.Any() ? specialOfferService.GetDiscountedPrice(skuCount.Key, skuCount.Value, product.Price, offers)
+                    
+                    totalPrice += offers != null && offers.Any() ? 
+                        specialOfferService.GetDiscountedPrice(skuCount.Key, skuCount.Value, product.Price, offers)
                         : product.Price * skuCount.Value;
                 }
                 else
@@ -101,3 +106,4 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
