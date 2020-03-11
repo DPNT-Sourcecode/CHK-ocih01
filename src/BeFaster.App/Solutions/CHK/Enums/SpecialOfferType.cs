@@ -3,6 +3,8 @@
     public enum SpecialOfferType
     {
         BuyMultipleForPriceReduction,
-        BuyOneGetAnotherFree
+        BuyOneGetAnotherFree,
+        BuyInBulkFromAGroupForPriceReductionOffer
     }
 }
+
