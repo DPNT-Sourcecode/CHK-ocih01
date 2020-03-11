@@ -12,7 +12,6 @@ namespace BeFaster.App.Solutions.CHK
     public static class CheckoutSolution
     {
         public static readonly IDictionary<char, Product> Products = GetProducts();
-        public static readonly IDictionary<char, IList<SpecialOffer>> SpecialOffers = new Dictionary<char, IList<SpecialOffer>>();
         public static readonly ISpecialOfferService specialOfferService = new SpecialOfferService();
         private const int invalidInput = -1;
 
@@ -42,7 +41,7 @@ namespace BeFaster.App.Solutions.CHK
                 }
             }
 
-            var offers = Products.Where(x=>x.Value.SpecialOffers != null && x.Value.SpecialOffers.Any(y => y.GetType().Equals(typeof(BuyOneGetAnotherFree))))
+            var offers = Products.Where(x=> x.Value.SpecialOffers.Any(y => y.GetType().Equals(typeof(BuyOneGetAnotherFree))))
                 .ToDictionary(s => s.Key, s => s.Value.SpecialOffers.Where(z => z.OfferType == Enums.SpecialOfferType.BuyOneGetAnotherFree).ToList());
 
             skuCounts = specialOfferService.ApplyBuyOneProductGetAnotherProductFreeOffer(skuCounts, offers);
@@ -91,4 +90,5 @@ namespace BeFaster.App.Solutions.CHK
         }        
     }
 }
+
 
