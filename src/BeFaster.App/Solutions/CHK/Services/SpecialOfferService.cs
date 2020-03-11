@@ -35,15 +35,17 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
 
 
-        public IDictionary<char, int> ApplyBuyOneProductGetAnotherProductFreeOffer(IDictionary<char, int> skuCounts, Dictionary<char, BuyOneGetAnotherFreeOffer> specialOffers)
+        public IDictionary<char, int> ApplyBuyOneProductGetAnotherProductFreeOffer(IDictionary<char, int> skuCounts)
         {
-            foreach (var offer in specialOffers)
+            var buyOneGetAnotherFreeOffers = specialOffersRepository.GetSpecialOffersByType<BuyOneGetAnotherFreeOffer>().ToDictionary(x => x.ProductId, x => x);
+            foreach (var offer in buyOneGetAnotherFreeOffers)
             {
                 if (skuCounts.Keys.Contains(offer.Key))
                 {
                     var buyOneGetOneOffer = offer.Value;
                     if (skuCounts[offer.Key] >= buyOneGetOneOffer.ItemQuantity && skuCounts.Keys.Contains(buyOneGetOneOffer.FreeItemId))
                     {
+                        //Check if the free item is same or not
                         if (offer.Key == buyOneGetOneOffer.FreeItemId)
                         {
                             skuCounts = ApplyBuyOneProductGetSameProductFreeOffer(skuCounts, buyOneGetOneOffer);
@@ -77,4 +79,5 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
     }
 }
+
 
