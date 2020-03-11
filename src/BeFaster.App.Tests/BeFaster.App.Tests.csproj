@@ -69,9 +69,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Solutions\CHK\TestData\Products.json">
+    <Content Include="Solutions\CHK\TestData\Products.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
@@ -94,3 +94,4 @@
   </Target>
   <Import Project="..\..\packages\MSTest.TestAdapter.2.1.0\build\net45\MSTest.TestAdapter.targets" Condition="Exists('..\..\packages\MSTest.TestAdapter.2.1.0\build\net45\MSTest.TestAdapter.targets')" />
 </Project>
+
