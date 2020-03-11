@@ -10,4 +10,3 @@ namespace BeFaster.App.Solutions.CHK.Models
         public IList<SpecialOffer> SpecialOffers{get; set;}
     }
 }
-
