@@ -32,7 +32,6 @@ namespace BeFaster.App.Solutions.CHK.Services
 
         public IDictionary<char, int> ApplyBuyOneProductGetAnotherProductFreeOffer(IDictionary<char, int> skuCounts, Dictionary<char, IList<SpecialOffer>> specialOffers)
         {
-            var offers = specialOffers.Cast<BuyOneGetAnotherFree>();
             foreach (var offer in specialOffers)
             {
                 if (skuCounts.Keys.Contains(offer.Key))
@@ -75,6 +74,7 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
     }
 }
+
 
 
 
