@@ -10,6 +10,7 @@ namespace BeFaster.App.Solutions.CHK.Services
         public int GetDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice, IList<BuyMultipleForPriceReductionOffer> specialOffers)
         {
             int discountedPrice = 0;
+            specialOffers = specialOffers.OrderByDescending(x => x.ItemQuantity).ToList();
             foreach (BuyMultipleForPriceReductionOffer offer in specialOffers)
             {
                 if (cartItemQuantity < offer.ItemQuantity) continue;
@@ -72,6 +73,3 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
     }
 }
-
-
-

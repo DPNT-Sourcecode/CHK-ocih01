@@ -31,13 +31,13 @@ namespace BeFaster.App.Tests.Solutions.CHK
         [TestMethod]
         public void ComputePrice_Should_Return_InvalidInput_Given_SKU_That_Does_Not_Exist_In_ProductsList()
         {
-            Assert.AreEqual(invalidInput, CheckoutSolution.ComputePrice("Z"));
+            Assert.AreEqual(invalidInput, CheckoutSolution.ComputePrice("1"));
         }
 
         [TestMethod]
         public void ComputePrice_Should_Return_InvalidInput_Given_SKU_That_Does_Not_Exist_In_ProductsList_With_Other_Valid_SKUs()
         {
-            Assert.AreEqual(invalidInput, CheckoutSolution.ComputePrice("AZC"));
+            Assert.AreEqual(invalidInput, CheckoutSolution.ComputePrice("A1C"));
         }
 
         #endregion
