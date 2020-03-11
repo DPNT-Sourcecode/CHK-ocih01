@@ -29,26 +29,24 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
 
 
-        public IDictionary<char, int> ApplyBuyOneProductGetAnotherProductFreeOffer(IDictionary<char, int> skuCounts, Dictionary<char, IList<BuyOneGetAnotherFreeOffer>> specialOffers)
+        public IDictionary<char, int> ApplyBuyOneProductGetAnotherProductFreeOffer(IDictionary<char, int> skuCounts, Dictionary<char, BuyOneGetAnotherFreeOffer> specialOffers)
         {
             foreach (var offer in specialOffers)
             {
                 if (skuCounts.Keys.Contains(offer.Key))
                 {
-                    foreach (BuyOneGetAnotherFreeOffer buyOneGetOneOffer in offer.Value)
+                    var buyOneGetOneOffer = offer.Value;
+                    if (skuCounts[offer.Key] >= buyOneGetOneOffer.ItemQuantity && skuCounts.Keys.Contains(buyOneGetOneOffer.FreeItemId))
                     {
-                        if (skuCounts[offer.Key] >= buyOneGetOneOffer.ItemQuantity && skuCounts.Keys.Contains(buyOneGetOneOffer.FreeItemId))
+                        if (offer.Key == buyOneGetOneOffer.FreeItemId)
                         {
-                            if (offer.Key == buyOneGetOneOffer.FreeItemId)
-                            {
-                                skuCounts = ApplyBuyOneProductGetSameProductFreeOffer(skuCounts, buyOneGetOneOffer);
-                            }
-                            else
-                            {
-                                var numberOfItemsToReduce = (skuCounts[offer.Key] / buyOneGetOneOffer.ItemQuantity) * buyOneGetOneOffer.FreeItemQuantity;
-                                int itemCountAfterReduction = skuCounts[buyOneGetOneOffer.FreeItemId] - numberOfItemsToReduce;
-                                skuCounts[buyOneGetOneOffer.FreeItemId] = itemCountAfterReduction > 0 ? itemCountAfterReduction : 0;
-                            }
+                            skuCounts = ApplyBuyOneProductGetSameProductFreeOffer(skuCounts, buyOneGetOneOffer);
+                        }
+                        else
+                        {
+                            var numberOfItemsToReduce = (skuCounts[offer.Key] / buyOneGetOneOffer.ItemQuantity) * buyOneGetOneOffer.FreeItemQuantity;
+                            int itemCountAfterReduction = skuCounts[buyOneGetOneOffer.FreeItemId] - numberOfItemsToReduce;
+                            skuCounts[buyOneGetOneOffer.FreeItemId] = itemCountAfterReduction > 0 ? itemCountAfterReduction : 0;
                         }
                     }
                 }
@@ -73,3 +71,4 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
     }
 }
+
