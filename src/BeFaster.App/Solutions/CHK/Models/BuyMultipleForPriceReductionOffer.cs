@@ -5,7 +5,7 @@
         public char ProductId { get; set; }
         public int SpecialPrice { get; set; }
 
-        public int GetDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice)
+        public int GetDiscountedPrice(int cartItemQuantity, int actualProductPrice)
         {
             return cartItemQuantity / ItemQuantity * SpecialPrice;
         }

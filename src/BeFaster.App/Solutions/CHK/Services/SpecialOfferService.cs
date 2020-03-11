@@ -12,25 +12,31 @@ namespace BeFaster.App.Solutions.CHK.Services
 
         public int GetDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice)
         {
-            int discountedPrice = 0;
-            var specialOffers = specialOffersRepository.GetSpecialOffersByType<BuyMultipleOfSameForPriceReductionOffer>().
+            var buyMultipleOfSameForPriceReductionOffer = specialOffersRepository.GetSpecialOffersByType<BuyMultipleOfSameForPriceReductionOffer>().
                 Where(x=>x.ProductId == productId).
                 OrderByDescending(x => x.ItemQuantity).ToList();
+
+             return buyMultipleOfSameForPriceReductionOffer != null && buyMultipleOfSameForPriceReductionOffer.Any() ?
+                        GetDiscountedPrice(buyMultipleOfSameForPriceReductionOffer, cartItemQuantity, actualProductPrice)
+                        : actualProductPrice * cartItemQuantity;
+        }
+
+        private static int GetDiscountedPrice(List<BuyMultipleOfSameForPriceReductionOffer> specialOffers, int cartItemQuantity, int actualProductPrice)
+        {
+            int discountedPrice = 0;
 
             foreach (BuyMultipleOfSameForPriceReductionOffer offer in specialOffers)
             {
                 if (cartItemQuantity < offer.ItemQuantity) continue;
 
-                discountedPrice += offer.GetDiscountedPrice(productId, cartItemQuantity, actualProductPrice);
+                discountedPrice += offer.GetDiscountedPrice(cartItemQuantity, actualProductPrice);
                 cartItemQuantity = cartItemQuantity - (offer.ItemQuantity * (cartItemQuantity / offer.ItemQuantity));
-                if (cartItemQuantity == 0) break;                   
+                if (cartItemQuantity == 0) break;
             }
-
             if (cartItemQuantity > 0)
             {
                 discountedPrice += cartItemQuantity * actualProductPrice;
             }
-            
             return discountedPrice;
         }
 
@@ -59,7 +65,6 @@ namespace BeFaster.App.Solutions.CHK.Services
                     }
                 }
             }
-
             return skuCounts;
         }
 
@@ -79,3 +84,4 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
     }
 }
+
