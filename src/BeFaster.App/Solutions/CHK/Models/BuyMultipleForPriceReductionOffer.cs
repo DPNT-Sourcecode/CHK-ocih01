@@ -1,8 +1,10 @@
-﻿namespace BeFaster.App.Solutions.CHK.Models
+﻿using System.Collections.Generic;
+
+namespace BeFaster.App.Solutions.CHK.Models
 {
     public class BuyMultipleOfSameForPriceReductionOffer : SpecialOffer
     {
-        public char ProductId { get; set; }
+        public IList<char> ProductId { get; set; }
         public int SpecialPrice { get; set; }
 
         public int GetDiscountedPrice(int cartItemQuantity, int actualProductPrice)
