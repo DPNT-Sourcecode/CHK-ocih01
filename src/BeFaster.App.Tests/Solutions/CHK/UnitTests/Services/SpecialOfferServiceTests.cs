@@ -21,8 +21,22 @@ namespace BeFaster.App.Tests.Solutions.CHK.UnitTests.Services
         [TestMethod]
         public void GetDiscountedPrice_Should_Return_CorrectPrice_Given_A_MultiBuyOffer()
         {
-            List<BuyMultipleOfSameForPriceReductionOffer> multiBuyOffers = GetMultiBuyOffers();
-            mockSpecialOffersRepository.Setup(x => x.GetSpecialOffersByType<BuyMultipleOfSameForPriceReductionOffer>()).Returns(multiBuyOffers).Verifiable();
+            mockSpecialOffersRepository.Setup(x => x.GetSpecialOffersByType<BuyMultipleOfSameForPriceReductionOffer>()).Returns(GetMultiBuyOffers()).Verifiable();
+
+            var price = specialOfferService.GetDiscountedPrice('A', 3, 50);
+
+            Assert.AreEqual(130, price);
+        }
+
+
+        [TestMethod]
+        public void GetDiscountedPrice_Should_Return_CorrectPrice_Given_A_MultiBuyOffer_1()
+        {
+            mockSpecialOffersRepository.Setup(x => x.GetSpecialOffersByType<BuyMultipleOfSameForPriceReductionOffer>()).Returns(GetMultiBuyOffers()).Verifiable();
+
+            var price = specialOfferService.GetDiscountedPrice('A', 5, 50);
+
+            Assert.AreEqual(200, price);
         }
 
         private static List<BuyMultipleOfSameForPriceReductionOffer> GetMultiBuyOffers()
@@ -47,5 +61,6 @@ namespace BeFaster.App.Tests.Solutions.CHK.UnitTests.Services
         }
     }
 }
+
 
 
