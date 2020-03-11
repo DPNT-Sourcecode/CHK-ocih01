@@ -1,4 +1,5 @@
-﻿using BeFaster.App.Solutions.CHK.Repositories;
+﻿using BeFaster.App.Solutions.CHK.Models;
+using BeFaster.App.Solutions.CHK.Repositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 
@@ -12,18 +13,32 @@ namespace BeFaster.App.Tests.Solutions.CHK.UnitTests.Repositories
         {
             var offers = new SpecialOffersRepository().GetAllSpecialOffers();
 
-            Assert.AreEqual(26, offers.Count);
+            Assert.AreEqual(13, offers.Count);
         }
 
         [TestMethod]
-        public void GetAllProducts_Should_Return_Correct_Number_Of_Product_Keys()
+        public void GetSpecialOffersByType_Should_Return_Correct_Number_Of_BuyMultipleOfSameForPriceReductionOffers()
         {
-            var products = new ProductsRepository().GetAllProducts();
+            var offersCount = new SpecialOffersRepository().GetSpecialOffersByType<BuyMultipleOfSameForPriceReductionOffer>().Count();
 
-            for (char c = 'A'; c <= 'Z'; c++)
-            {
-                Assert.IsTrue(products.Keys.Contains(c));
-            }
+            Assert.AreEqual(7, offersCount);
+        }
+
+        [TestMethod]
+        public void GetSpecialOffersByType_Should_Return_Correct_Number_Of_BuyOneGetAnotherFreeOffers()
+        {
+            var offersCount = new SpecialOffersRepository().GetSpecialOffersByType<BuyOneGetAnotherFreeOffer>().Count();
+
+            Assert.AreEqual(7, offersCount);
+        }
+
+        [TestMethod]
+        public void GetSpecialOffersByType_Should_Return_Correct_Number_Of_BuyInBulkFromAGroupForPriceReductionOffers()
+        {
+            var offersCount = new SpecialOffersRepository().GetSpecialOffersByType<BuyInBulkFromAGroupForPriceReductionOffer>().Count();
+
+            Assert.AreEqual(1, offersCount);
         }
     }
 }
+

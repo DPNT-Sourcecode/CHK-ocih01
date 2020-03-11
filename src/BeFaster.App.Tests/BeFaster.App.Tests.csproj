@@ -66,6 +66,7 @@
     <Compile Include="Solutions\CHK\E2ETests\SpecialOfferTests.cs" />
     <Compile Include="Solutions\CHK\TestModels\TestProduct.cs" />
     <Compile Include="Solutions\CHK\UnitTests\Repositories\ProductRepositoryTests.cs" />
+    <Compile Include="Solutions\CHK\UnitTests\Repositories\SpecialOffersRepositoryTests.cs" />
     <Compile Include="Solutions\HLO\HelloSolutionTests.cs" />
     <Compile Include="Solutions\SUM\SumSolutionTest.cs" />
     <Compile Include="Solutions\TST\OneTest.cs" />
