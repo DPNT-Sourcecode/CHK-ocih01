@@ -1,6 +1,6 @@
 ﻿using BeFaster.App.Solutions.CHK;
 using BeFaster.App.Solutions.CHK.Models;
-using BeFaster.App.Tests.Solutions.CHK.TestModel;
+using BeFaster.App.Tests.Solutions.CHK.TestModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -85,5 +85,6 @@ namespace BeFaster.App.Tests.Solutions.CHK.AllProductsTests
         #endregion
     }
 }
+
 
 

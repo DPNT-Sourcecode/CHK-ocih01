@@ -1,7 +1,7 @@
 ﻿using BeFaster.App.Solutions.CHK.Models;
 using System.Collections.Generic;
 
-namespace BeFaster.App.Tests.Solutions.CHK.TestModel
+namespace BeFaster.App.Tests.Solutions.CHK.TestModels
 {
     public class TestProduct
     {
@@ -11,4 +11,3 @@ namespace BeFaster.App.Tests.Solutions.CHK.TestModel
         public BuyOneGetAnotherFreeOffer BuyOneGetAnotherFreeOffer { get; set; }
     }
 }
-
