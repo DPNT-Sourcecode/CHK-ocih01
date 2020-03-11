@@ -73,7 +73,7 @@ namespace BeFaster.App.Solutions.CHK
         {
             var products = new Dictionary<char, Product>();
 
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Products1.json");
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"Solutions\CHK\Data\Products1.json");
 
             JsonSerializer serializer = new JsonSerializer();
             using (FileStream s = File.Open(filePath, FileMode.Open))
@@ -89,3 +89,4 @@ namespace BeFaster.App.Solutions.CHK
         }        
     }
 }
+
