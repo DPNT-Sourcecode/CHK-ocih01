@@ -1,12 +1,11 @@
 ﻿using BeFaster.App.Solutions.CHK.Interfaces;
 using BeFaster.App.Solutions.CHK.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace BeFaster.App.Solutions.CHK.Services
 {
-    public class SpecialOfferService 
+    public class SpecialOfferService : ISpecialOfferService
     {
         public int GetDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice, IList<SpecialOffer> specialOffers)
         {
@@ -76,5 +75,6 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
     }
 }
+
 
 

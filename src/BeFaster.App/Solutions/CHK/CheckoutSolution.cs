@@ -61,7 +61,7 @@ namespace BeFaster.App.Solutions.CHK
                 if (product != null)
                 {
                     var offers = product.SpecialOffers.Where(x => x.OfferType == Enums.SpecialOfferType.BuyMultipleForPriceReduction).ToList();
-                    totalPrice += offers.Any() ? specialOfferService.GetDiscountedPrice(skuCount.Key, skuCount.Value, product.Price, offers) : product.Price * skuCount.Value;
+                    totalPrice += offers.Any() ? specialOfferService.GetDiscountedPrice(skuCount.Key, skuCount.Value, product.Price, product.SpecialOffers) : product.Price * skuCount.Value;
                 }
                 else
                 {
@@ -98,4 +98,5 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
