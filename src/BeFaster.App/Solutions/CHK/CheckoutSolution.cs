@@ -58,7 +58,8 @@ namespace BeFaster.App.Solutions.CHK
                 if (product != null)
                 {
                     var offers = product.BuyMultipleForPriceReductionOffers;
-                    totalPrice += offers.Any() ? specialOfferService.GetDiscountedPrice(skuCount.Key, skuCount.Value, product.Price, offers) : product.Price * skuCount.Value;
+                    totalPrice += offers != null && offers.Any() ? specialOfferService.GetDiscountedPrice(skuCount.Key, skuCount.Value, product.Price, offers) 
+                        : product.Price * skuCount.Value;
                 }
                 else
                 {
@@ -94,5 +95,6 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
