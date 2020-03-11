@@ -42,7 +42,7 @@ namespace BeFaster.App.Tests.Solutions.CHK
 
         #endregion
 
-        #region Products Only Tests
+        #region Simple Product Price Tests
 
         [TestMethod]
         public void ComputePrice_Should_Return_Correct_TotalPrice_Given_Single_SKU()
