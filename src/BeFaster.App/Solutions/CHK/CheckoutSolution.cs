@@ -2,7 +2,6 @@
 using BeFaster.App.Solutions.CHK.Models;
 using BeFaster.App.Solutions.CHK.Services;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,10 +10,10 @@ namespace BeFaster.App.Solutions.CHK
 {
     public static class CheckoutSolution
     {
-        public static IDictionary<char, Product> Products = GetProducts();
+        private static IDictionary<char, Product> products = GetProducts();
+        private static readonly Dictionary<char, IList<BuyOneGetAnotherFreeOffer>> buyOneGetAnotherProductOffers = GetBuyOneGetAnotherProductOffersOffers();
+        private static readonly ISpecialOfferService specialOfferService = new SpecialOfferService();
 
-
-        public static readonly ISpecialOfferService specialOfferService = new SpecialOfferService();
         private const int invalidInput = -1;
 
         public static int ComputePrice(string skus)
@@ -43,7 +42,7 @@ namespace BeFaster.App.Solutions.CHK
                 }
             }
 
-            var offers = Products.Where(x => x.Value.BuyOneGetAnotherFreeOffers != null).ToDictionary(s => s.Key, s => s.Value.BuyOneGetAnotherFreeOffers);
+            var offers = products.Where(x => x.Value.BuyOneGetAnotherFreeOffers != null).ToDictionary(s => s.Key, s => s.Value.BuyOneGetAnotherFreeOffers);
 
             skuCounts = specialOfferService.ApplyBuyOneProductGetAnotherProductFreeOffer(skuCounts, offers);
             return skuCounts;
@@ -55,7 +54,7 @@ namespace BeFaster.App.Solutions.CHK
 
             foreach (var skuCount in skuCounts)
             {
-                var product = Products[skuCount.Key];
+                var product = products[skuCount.Key];
                 if (product != null)
                 {
                     var offers = product.BuyMultipleForPriceReductionOffers;
@@ -89,6 +88,11 @@ namespace BeFaster.App.Solutions.CHK
             products = productList.ToDictionary(x => x.Id, x => x);
             return products;
         }
+        private static Dictionary<char, IList<BuyOneGetAnotherFreeOffer>> GetBuyOneGetAnotherProductOffersOffers()
+        {
+            return products.Where(x => x.Value.BuyOneGetAnotherFreeOffers != null).ToDictionary(s => s.Key, s => s.Value.BuyOneGetAnotherFreeOffers);
+        }
     }
 }
+
 
