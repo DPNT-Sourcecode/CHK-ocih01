@@ -40,6 +40,16 @@ namespace BeFaster.App.Tests.Solutions.CHK.AllProductsTests
                 Assert.AreEqual(product.Price, CheckoutSolution.ComputePrice(product.Id.ToString()));
             }
         }
+
+        [TestMethod]
+        public void ComputePrice_Should_Return_CorrectPrice_For_Product_H_Given_MultipleValues()
+        {
+            
+            Assert.AreEqual(45, CheckoutSolution.ComputePrice("HHHHH"));
+            Assert.AreEqual(80, CheckoutSolution.ComputePrice("HHHHHHHHHH"));
+
+        }
     }
 }
+
 
