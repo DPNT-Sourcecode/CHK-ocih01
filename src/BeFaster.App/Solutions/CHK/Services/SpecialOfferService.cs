@@ -8,10 +8,10 @@ namespace BeFaster.App.Solutions.CHK.Services
 {
     public class SpecialOfferService : ISpecialOfferService
     {
-        public int GetDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice, IEnumerable<SpecialOffer> specialOffers)
+        public int GetDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice, IList<SpecialOffer> specialOffers)
         {
             int discountedPrice = 0;
-            specialOffers = specialOffers.ToList().OrderByDescending(x=>x.ItemQuantity);
+            specialOffers = specialOffers.OrderByDescending(x=>x.ItemQuantity).ToList();
 
             foreach (BuyMultipleForPriceReduction offer in specialOffers)
             {
@@ -75,5 +75,6 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
     }
 }
+
 
 
