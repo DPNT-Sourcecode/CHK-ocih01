@@ -91,7 +91,7 @@ namespace BeFaster.App.Solutions.CHK.Services
         public IDictionary<char, int> ApplyBuyGroupOfProductsForPriceReductionOffer(IDictionary<char, int> skuCounts, IDictionary<char, Product> products)
         {
             var offers = specialOffersRepository.GetSpecialOffersByType<BuyMultipleProductsForPriceReductionOffer>().Where(x=>x.IsGroupingAllowed)
-                .GroupBy(y=>y.OfferId).SelectMany(x=>x).ToList();
+                .GroupBy(y=>y.OfferId).Select(x=>x.First()).ToList();
 
             foreach (var offer in offers)
             {
@@ -157,3 +157,4 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
     }
 }
+
