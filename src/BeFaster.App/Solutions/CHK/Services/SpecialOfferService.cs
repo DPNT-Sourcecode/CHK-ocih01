@@ -100,9 +100,7 @@ namespace BeFaster.App.Solutions.CHK.Services
                 var sumOfSkusThatMatchOffer = skuCounts.Where(y => offer.CombinationProducts.Contains(y.Key)).Sum(x => x.Value);
                 if (sumOfSkusThatMatchOffer < offer.ItemQuantity) continue;
 
-
                 var noOfProductsToDistribute = sumOfSkusThatMatchOffer % offer.ItemQuantity;
-
 
                 if(noOfProductsToDistribute == 0)
                 {
@@ -163,3 +161,4 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
     }
 }
+
