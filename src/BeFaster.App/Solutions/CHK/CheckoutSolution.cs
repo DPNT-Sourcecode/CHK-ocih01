@@ -12,7 +12,7 @@ namespace BeFaster.App.Solutions.CHK
     public static class CheckoutSolution
     {
         public static readonly IDictionary<char, Product> Products = GetProducts();
-        public static readonly IDictionary<char, IList<ISpecialOffer>> SpecialOffers = new Dictionary<char, IList<ISpecialOffer>>();
+        public static readonly IDictionary<char, IList<SpecialOffer>> SpecialOffers = new Dictionary<char, IList<SpecialOffer>>();
         public static readonly ISpecialOfferService specialOfferService = new SpecialOfferService();
         private const int invalidInput = -1;
 
@@ -91,3 +91,4 @@ namespace BeFaster.App.Solutions.CHK
         }        
     }
 }
+
