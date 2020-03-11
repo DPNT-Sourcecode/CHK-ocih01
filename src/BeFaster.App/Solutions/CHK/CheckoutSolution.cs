@@ -41,7 +41,7 @@ namespace BeFaster.App.Solutions.CHK
                 }
             }
 
-            var offers = Products.Where(x=>x.Value.SpecialOffers != null)
+            var offers = Products.Where(x=>x.Value.SpecialOffers != null && x.Value.SpecialOffers.Any(y=>y.OfferType == Enums.SpecialOfferType.BuyOneGetAnotherFree))
                 .ToDictionary(s => s.Key, s => s.Value.SpecialOffers);
 
             skuCounts = specialOfferService.ApplyBuyOneProductGetAnotherProductFreeOffer(skuCounts, offers);
@@ -90,6 +90,7 @@ namespace BeFaster.App.Solutions.CHK
         }        
     }
 }
+
 
 
 
