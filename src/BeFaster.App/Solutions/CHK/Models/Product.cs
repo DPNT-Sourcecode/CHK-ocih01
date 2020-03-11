@@ -7,6 +7,8 @@ namespace BeFaster.App.Solutions.CHK.Models
     {
         public char Id { get; set; }
         public int Price { get; set; }
-        public IList<SpecialOffer> SpecialOffers{get; set;}
+        public IList<BuyMultipleForPriceReductionOffer> buyMultipleForPriceReductionOffers{get; set;}
+        public IList<BuyOneGetAnotherFree> buyOneGetAnotherFreeOffers { get; set; }
     }
 }
+

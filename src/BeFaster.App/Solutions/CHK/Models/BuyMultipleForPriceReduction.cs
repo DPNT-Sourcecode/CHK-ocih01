@@ -1,6 +1,6 @@
 ﻿namespace BeFaster.App.Solutions.CHK.Models
 {
-    public class BuyMultipleForPriceReduction : SpecialOffer
+    public class BuyMultipleForPriceReductionOffer : SpecialOffer
     {
         public int SpecialPrice { get; set; }
 
