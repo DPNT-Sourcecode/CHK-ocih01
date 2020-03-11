@@ -4,12 +4,12 @@
     "Price": 50,
     "SpecialOffers": [
       {
-        "Type": 1,
+        "Type": 0,
         "ItemQuantity": 3,
         "SpecialPrice": 130
       },
       {
-        "Type": 1,
+        "Type": 0,
         "ItemQuantity": 5,
         "SpecialPrice": 200
       }
@@ -20,7 +20,7 @@
     "Price": 30,
     "SpecialOffers": [
       {
-        "Type": 1,
+        "Type": 0,
         "ItemQuantity": 2,
         "SpecialPrice": 45
       }
@@ -39,7 +39,7 @@
     "Price": 40,
     "SpecialOffers": [
       {
-        "Type": 2,
+        "Type": 1,
         "ItemQuantity": 2,
         "FreeItemId": "B",
         "FreeItemQuantity" :  1
@@ -51,7 +51,7 @@
     "Price": 10,
     "SpecialOffers": [
       {
-        "Type": 2,
+        "Type": 1,
         "ItemQuantity": 2,
         "FreeItemId": "F",
         "FreeItemQuantity": 1
@@ -67,12 +67,12 @@
     "Price": 10,
     "SpecialOffers": [
       {
-        "Type": 1,
+        "Type": 0,
         "ItemQuantity": 5,
         "SpecialPrice": 45
       },
       {
-        "Type": 1,
+        "Type": 0,
         "ItemQuantity": 10,
         "SpecialPrice": 80
       }
@@ -91,7 +91,7 @@
     "Price": 80,
     "SpecialOffers": [
       {
-        "Type": 1,
+        "Type": 0,
         "ItemQuantity": 2,
         "SpecialPrice": 150
       }
@@ -110,7 +110,7 @@
     "Price": 40,
     "SpecialOffers": [
       {
-        "Type": 2,
+        "Type": 1,
         "ItemQuantity": 3,
         "FreeItemId": "M",
         "FreeItemQuantity": 1
@@ -126,7 +126,7 @@
     "Price": 50,
     "SpecialOffers": [
       {
-        "Type": 1,
+        "Type": 0,
         "ItemQuantity": 5,
         "SpecialPrice": 200
       }
@@ -137,7 +137,7 @@
     "Price": 30,
     "SpecialOffers": [
       {
-        "Type": 1,
+        "Type": 0,
         "ItemQuantity": 3,
         "SpecialPrice": 80
       }
@@ -148,7 +148,7 @@
     "Price": 50,
     "SpecialOffers": [
       {
-        "Type": 2,
+        "Type": 1,
         "ItemQuantity": 3,
         "FreeItemId": "Q",
         "FreeItemQuantity": 1
@@ -168,7 +168,7 @@
     "Price": 40,
     "SpecialOffers": [
       {
-        "Type": 2,
+        "Type": 1,
         "ItemQuantity": 3,
         "FreeItemId": "U",
         "FreeItemQuantity": 1
@@ -180,12 +180,12 @@
     "Price": 50,
     "SpecialOffers": [
       {
-        "Type": 1,
+        "Type": 0,
         "ItemQuantity": 2,
         "SpecialPrice": 90
       },
       {
-        "Type": 1,
+        "Type": 0,
         "ItemQuantity": 3,
         "SpecialPrice": 130
       }
@@ -208,3 +208,4 @@
     "Price": 50
   }
 ]
+

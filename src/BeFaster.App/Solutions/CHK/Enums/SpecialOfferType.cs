@@ -2,8 +2,9 @@
 {
     public enum SpecialOfferType
     {
-        BuyMultipleForPriceReduction = 1,
-        BuyOneGetAnotherFree = 2
+        BuyMultipleForPriceReduction,
+        BuyOneGetAnotherFree
     }
 }
+
 
