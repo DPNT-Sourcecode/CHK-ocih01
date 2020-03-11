@@ -1,5 +1,4 @@
 ﻿using BeFaster.App.Solutions.CHK.Interfaces;
-using BeFaster.App.Solutions.CHK.Models;
 using BeFaster.App.Solutions.CHK.Repositories;
 using BeFaster.App.Solutions.CHK.Services;
 using System.Collections.Generic;
@@ -28,6 +27,7 @@ namespace BeFaster.App.Solutions.CHK
         private static IDictionary<char, int> GetSkuCounts(string skus)
         {
             IDictionary<char, int> skuCounts = new Dictionary<char, int>();
+
             foreach (char sku in skus)
             {
                 if (skuCounts.ContainsKey(sku))
@@ -39,8 +39,7 @@ namespace BeFaster.App.Solutions.CHK
                     skuCounts.Add(sku, 1);
                 }
             }
-            var buyOneGetAnotherFreeOffers = specialOffersRepository.GetSpecialOffersByType<BuyOneGetAnotherFreeOffer>().ToDictionary(x=>x.ProductId, x=>x);
-            return specialOfferService.ApplyBuyOneProductGetAnotherProductFreeOffer(skuCounts, buyOneGetAnotherFreeOffers);
+            return specialOfferService.ApplyBuyOneProductGetAnotherProductFreeOffer(skuCounts);
         }
 
         private static int GetTotalPrice(IDictionary<char, int> skuCounts)
@@ -50,24 +49,21 @@ namespace BeFaster.App.Solutions.CHK
 
             foreach (var skuCount in skuCounts)
             {
-                if (products.Keys.Contains(skuCount.Key))
-                {
-                    var product = products[skuCount.Key];
-                    var offers = product.BuyMultipleForPriceReductionOffers;
-                    
-                    totalPrice += offers != null && offers.Any() ? 
-                        specialOfferService.GetDiscountedPrice(skuCount.Key, skuCount.Value, product.Price, offers)
-                        : product.Price * skuCount.Value;
-                }
-                else
-                {
+                if (!products.Keys.Contains(skuCount.Key))
                     return invalidInput;
-                }
+                
+                var product = products[skuCount.Key];                   
+                    
+                totalPrice += offers != null && offers.Any() ? 
+                    specialOfferService.GetDiscountedPrice(skuCount.Key, skuCount.Value, product.Price)
+                    : product.Price * skuCount.Value;
+
             }
             return totalPrice;
         }
     }
 }
+
 
 
 
