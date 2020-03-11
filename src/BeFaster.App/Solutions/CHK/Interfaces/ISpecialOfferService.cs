@@ -7,5 +7,6 @@ namespace BeFaster.App.Solutions.CHK.Interfaces
     {
         int GetDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice);
         IDictionary<char, int> ApplyBuyOneProductGetAnotherProductFreeOffer(IDictionary<char, int> skuCounts);
+        IDictionary<char, int> ApplyBuyGroupOfProductsForPriceReductionOffer(IDictionary<char, int> skuCounts, IDictionary<char, Product> products);
     }
 }

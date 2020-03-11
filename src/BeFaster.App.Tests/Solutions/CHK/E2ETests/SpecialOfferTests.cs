@@ -190,6 +190,111 @@ namespace BeFaster.App.Tests.Solutions.CHK.E2ETests
 
         #region Special Offer Challenge 5
 
+        [TestMethod]
+        public void ComputePrice_Should_Return_CorrectPrice_For_Product_Z_Given_MultipleValues()
+        {
+            Assert.AreEqual(45, CheckoutSolution.ComputePrice("ZZZ"));
+            Assert.AreEqual(66, CheckoutSolution.ComputePrice("ZZZZ"));
+        }
+
+        [TestMethod]
+        public void ComputePrice_Should_Return_CorrectPrice_For_Product_S_Given_MultipleValues()
+        {
+            Assert.AreEqual(45, CheckoutSolution.ComputePrice("SSS"));
+            Assert.AreEqual(85, CheckoutSolution.ComputePrice("SSSSS"));
+        }
+
+        [TestMethod]
+        public void ComputePrice_Should_Return_CorrectPrice_For_Product_T_Given_MultipleValues()
+        {
+            Assert.AreEqual(45, CheckoutSolution.ComputePrice("TTT"));
+            Assert.AreEqual(85, CheckoutSolution.ComputePrice("TTTTT"));
+        }
+
+        [TestMethod]
+        public void ComputePrice_Should_Return_CorrectPrice_For_Product_X_Given_MultipleValues()
+        {
+            Assert.AreEqual(45, CheckoutSolution.ComputePrice("XXX"));
+            Assert.AreEqual(62, CheckoutSolution.ComputePrice("XXXX"));
+        }
+        [TestMethod]
+        public void ComputePrice_Should_Return_CorrectPrice_For_Product_Y_Given_MultipleValues()
+        {
+            Assert.AreEqual(45, CheckoutSolution.ComputePrice("YYY"));
+            Assert.AreEqual(65, CheckoutSolution.ComputePrice("YYYY"));
+        }
+
+        [TestMethod]
+        public void ComputePrice_Should_Return_CorrectPrice_For_Combination_Of_Product_Y_And_Z_Given_MultipleValues()
+        {
+            Assert.AreEqual(110, CheckoutSolution.ComputePrice("ZZZZYYY"));
+        }
+
+        [TestMethod]
+        public void ComputePrice_Should_Return_CorrectPrice_For_Combination_Of_Product_XY_And_Z_Given_MultipleValues()
+        {
+            Assert.AreEqual(135, CheckoutSolution.ComputePrice("ZZZZZYXXX"));
+        }
+
+        [TestMethod]
+        public void ComputePrice_Should_Return_CorrectPrice_For_Combination_Of_Product_XY_And_Z_Given_MultipleValues_1()
+        {
+            Assert.AreEqual(152, CheckoutSolution.ComputePrice("ZZZZZYYXXX"));
+        }
+
+        [TestMethod]
+        public void ComputePrice_Should_Return_CorrectPrice_For_Combination_Of_Product_S_And_T_Given_MultipleValues()
+        {
+            Assert.AreEqual(90, CheckoutSolution.ComputePrice("STSTST"));
+        }
+
+        [TestMethod]
+        public void ComputePrice_Should_Return_CorrectPrice_For_Combination_Of_Product_SZX_And_T_Given_MultipleValues()
+        {
+            Assert.AreEqual(135, CheckoutSolution.ComputePrice("STSTSTZZX"));
+        }
+
+        [TestMethod]
+        public void ComputePrice_Should_Return_CorrectPrice_For_Combination_Of_Product_XYZ_Given_SingleValues()
+        {
+            Assert.AreEqual(45, CheckoutSolution.ComputePrice("XYZ"));
+        }
+        [TestMethod]
+        public void ComputePrice_Should_Return_CorrectPrice_For_Combination_Of_Product_XYZT_Given_SingleValues()
+        {
+            Assert.AreEqual(62, CheckoutSolution.ComputePrice("XYZT"));
+        }
+        [TestMethod]
+        public void ComputePrice_Should_Return_CorrectPrice_For_Combination_Of_Product_XYZTS_Given_SingleValues()
+        {
+            Assert.AreEqual(82, CheckoutSolution.ComputePrice("XYZTS"));
+        }
+        [TestMethod]
+        public void ComputePrice_Should_Return_CorrectPrice_For_Combination_Of_Product_XYZTS_Given_MultipleValues()
+        {
+            Assert.AreEqual(152, CheckoutSolution.ComputePrice("XYZTSXYZTS"));
+        }
+        [TestMethod]
+        public void ComputePrice_Should_Return_CorrectPrice_For_Combination_Of_Product_XYZTS_Given_MultipleValues_1()
+        {
+            Assert.AreEqual(225, CheckoutSolution.ComputePrice("XYZTSXYZTSXYZTS"));
+        }
+        [TestMethod]
+        public void ComputePrice_Should_Return_CorrectPrice_For_Combination_Of_Product_XYZTSA()
+        {
+            Assert.AreEqual(202, CheckoutSolution.ComputePrice("XYZTSXYZTSA"));
+        }
+
+        [TestMethod]
+        public void ComputePrice_Should_Return_CorrectPrice_For_Combination_Of_Product_XY()
+        {
+            Assert.AreEqual(37, CheckoutSolution.ComputePrice("XY"));
+        }
+        [TestMethod]
+        public void ComputePrice_Should_Return_CorrectPrice_For_Combination_Of_Product_XYA()
+        {
+            Assert.AreEqual(87, CheckoutSolution.ComputePrice("XYA"));
+        }
         #endregion
     }
 }

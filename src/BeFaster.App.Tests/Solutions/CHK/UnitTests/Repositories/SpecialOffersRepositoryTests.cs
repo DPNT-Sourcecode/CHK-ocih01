@@ -19,7 +19,7 @@ namespace BeFaster.App.Tests.Solutions.CHK.UnitTests.Repositories
         [TestMethod]
         public void GetSpecialOffersByType_Should_Return_Correct_Number_Of_BuyMultipleOfSameForPriceReductionOffers()
         {
-            var offersCount = new SpecialOffersRepository().GetSpecialOffersByType<BuyMultipleOfSameForPriceReductionOffer>().Count();
+            var offersCount = new SpecialOffersRepository().GetSpecialOffersByType<BuyMultipleProductsForPriceReductionOffer>().Count();
 
             Assert.AreEqual(15, offersCount);
         }
@@ -33,4 +33,3 @@ namespace BeFaster.App.Tests.Solutions.CHK.UnitTests.Repositories
         }
     }
 }
-

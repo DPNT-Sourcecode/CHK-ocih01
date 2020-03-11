@@ -1,5 +1,6 @@
 ﻿using BeFaster.App.Solutions.CHK.Interfaces;
 using BeFaster.App.Solutions.CHK.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,7 +17,7 @@ namespace BeFaster.App.Solutions.CHK.Services
 
         public int GetDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice)
         {
-            var offers = specialOffersRepository.GetSpecialOffersByType<BuyMultipleOfSameForPriceReductionOffer>().
+            var offers = specialOffersRepository.GetSpecialOffersByType<BuyMultipleProductsForPriceReductionOffer>().
                 Where(x=>x.ProductId == productId).
                 OrderByDescending(x => x.ItemQuantity).ToList();
 
@@ -25,15 +26,15 @@ namespace BeFaster.App.Solutions.CHK.Services
                         : actualProductPrice * cartItemQuantity;
         }
 
-        private static int GetDiscountedPrice(List<BuyMultipleOfSameForPriceReductionOffer> specialOffers, int cartItemQuantity, int actualProductPrice)
+        private static int GetDiscountedPrice(List<BuyMultipleProductsForPriceReductionOffer> specialOffers, int cartItemQuantity, int actualProductPrice)
         {
             int discountedPrice = 0;
 
-            foreach (BuyMultipleOfSameForPriceReductionOffer offer in specialOffers)
+            foreach (BuyMultipleProductsForPriceReductionOffer offer in specialOffers)
             {
                 if (cartItemQuantity < offer.ItemQuantity) continue;
 
-                discountedPrice += offer.GetDiscountedPrice(cartItemQuantity, actualProductPrice);
+                discountedPrice += (cartItemQuantity / offer.ItemQuantity) * offer.SpecialPrice;
                 cartItemQuantity = cartItemQuantity - (offer.ItemQuantity * (cartItemQuantity / offer.ItemQuantity));
                 if (cartItemQuantity == 0) break;
             }
@@ -86,6 +87,73 @@ namespace BeFaster.App.Solutions.CHK.Services
             }
             return skuCounts;
         }
+
+        public IDictionary<char, int> ApplyBuyGroupOfProductsForPriceReductionOffer(IDictionary<char, int> skuCounts, IDictionary<char, Product> products)
+        {
+            var offers = specialOffersRepository.GetSpecialOffersByType<BuyMultipleProductsForPriceReductionOffer>().Where(x=>x.IsGroupingAllowed)
+                .GroupBy(y=>y.OfferId).SelectMany(x=>x).ToList();
+
+            foreach (var offer in offers)
+            {
+                var skusThatMatchOffer = skuCounts.Where(y => offer.CombinationProducts.Contains(y.Key)).ToList();
+                if (!skusThatMatchOffer.Any() || skusThatMatchOffer.Count == 1) { continue; }
+                var sumOfSkusThatMatchOffer = skuCounts.Where(y => offer.CombinationProducts.Contains(y.Key)).Sum(x => x.Value);
+                if (sumOfSkusThatMatchOffer < offer.ItemQuantity) continue;
+
+
+                var noOfProductsToDistribute = sumOfSkusThatMatchOffer % offer.ItemQuantity;
+
+
+                if(noOfProductsToDistribute == 0)
+                {
+                    skuCounts[skusThatMatchOffer[0].Key] = sumOfSkusThatMatchOffer;
+                    for(int i= 1; i<skusThatMatchOffer.Count; i++)
+                    {
+                        skuCounts[skusThatMatchOffer[i].Key] = 0;
+                    }
+                    continue;
+                }
+
+                skuCounts = ApplyDistributionToSkuCounts(skuCounts, products, offer, sumOfSkusThatMatchOffer);
+            }
+           
+            return skuCounts;
+        }
+
+        private IDictionary<char, int> ApplyDistributionToSkuCounts(IDictionary<char, int> skuCounts, IDictionary<char, Product> products, 
+            BuyMultipleProductsForPriceReductionOffer offer, int sumOfSkusThatMatchOffer)
+        {
+            var groupedProducts = products.Where(x => offer.CombinationProducts.Contains(x.Key)).OrderByDescending(x => x.Value.Price).ToList();
+
+            bool isFirstProduct = true;
+            int productsToGroupWithOther = 0;
+            char previousProductId = groupedProducts[0].Key;
+
+            foreach (var product in groupedProducts)
+            {                
+                if (!skuCounts.ContainsKey(product.Key))
+                {
+                    continue;
+                }
+                if (isFirstProduct)
+                {
+                    productsToGroupWithOther = (skuCounts[product.Key]) % offer.ItemQuantity;
+                    skuCounts[product.Key] -= productsToGroupWithOther;                    
+                    isFirstProduct = false;
+                }
+                else if(productsToGroupWithOther > 0 ||  sumOfSkusThatMatchOffer >= offer.ItemQuantity)
+                {
+                    skuCounts[product.Key] = productsToGroupWithOther + skuCounts[product.Key];
+                    productsToGroupWithOther = skuCounts[product.Key] % offer.ItemQuantity;
+                    skuCounts[product.Key] -= productsToGroupWithOther;
+                }
+                sumOfSkusThatMatchOffer = sumOfSkusThatMatchOffer - skuCounts[product.Key];
+                previousProductId = product.Key;
+            }
+
+            skuCounts[previousProductId] = skuCounts[previousProductId] + productsToGroupWithOther;
+
+            return skuCounts;
+        }
     }
 }
-
