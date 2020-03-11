@@ -92,6 +92,20 @@ namespace BeFaster.App.Tests.Solutions.CHK.UnitTests.Services
             mockSpecialOffersRepository.Verify(x => x.GetSpecialOffersByType<BuyOneGetAnotherFreeOffer>(), Times.Once);
         }
 
+        [TestMethod]
+        public void ApplyBuyOneProductGetAnotherProductFreeOffer_Should_Return_Correct_Counts_Given_BuyOneGetSameProductOffers()
+        {
+            mockSpecialOffersRepository.Setup(x => x.GetSpecialOffersByType<BuyOneGetAnotherFreeOffer>()).Returns().Verifiable();
+
+            var skuCounts = new Dictionary<char, int>(1);
+            skuCounts.Add('A', 2);
+
+            var actualSkuCounts = specialOfferService.ApplyBuyOneProductGetAnotherProductFreeOffer(skuCounts);
+
+            Assert.AreEqual(skuCounts, actualSkuCounts);
+            mockSpecialOffersRepository.Verify(x => x.GetSpecialOffersByType<BuyOneGetAnotherFreeOffer>(), Times.Once);
+        }
+
         #endregion
 
         private static List<BuyMultipleOfSameForPriceReductionOffer> GetMultiBuyOffers()
@@ -114,8 +128,30 @@ namespace BeFaster.App.Tests.Solutions.CHK.UnitTests.Services
                 }
             };
         }
+
+        private static List<BuyOneGetAnotherFreeOffer> GetBuyOneGetAnotherFreeOffers()
+        {
+            return new List<BuyOneGetAnotherFreeOffer>
+            {
+                new BuyOneGetAnotherFreeOffer
+                {
+                    ProductId = 'E',
+                    ItemQuantity = 2,
+                    FreeItemQuantity = 1,
+                    FreeItemId = 'B'
+                },
+                new BuyOneGetAnotherFreeOffer
+                {
+                    ProductId = 'A',
+                    ItemQuantity = 5,
+                    FreeItemQuantity = 1,
+                    FreeItemId = 'A'
+                }
+            };
+        }
     }
 }
+
 
 
 
