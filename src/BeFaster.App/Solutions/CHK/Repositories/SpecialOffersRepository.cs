@@ -14,7 +14,8 @@ namespace BeFaster.App.Solutions.CHK.Repositories
                 {
                     ProductId = 'A',
                     ItemQuantity = 3,
-                    SpecialPrice = 130
+                    SpecialPrice = 130,
+                    OfferType = Enums.SpecialOfferType.BuyMultipleOfSameForPriceReduction
                 },
                 new BuyMultipleOfSameForPriceReductionOffer
                 {
@@ -104,10 +105,20 @@ namespace BeFaster.App.Solutions.CHK.Repositories
                     FreeItemId = 'U',
                     ItemQuantity = 3,
                     FreeItemQuantity = 1
+                },
+                new BuyInBulkFromAGroupForPriceReductionOffer
+                {
+                    Products = new List<char>
+                    {
+                        'S', 'T', 'X', 'Y', 'Z'
+                    },
+                    ItemQuantity = 3,
+                    SpecialPrice = 45
                 }
             };
         }
     }
 }
+
 
 

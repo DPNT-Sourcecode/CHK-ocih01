@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace BeFaster.App.Solutions.CHK.Interfaces
 {
-    interface ISpecialOffersRepository
+    public interface ISpecialOffersRepository
     {
+        IList<ISpecialOffer> GetAllSpecialOffers();
     }
 }
+
