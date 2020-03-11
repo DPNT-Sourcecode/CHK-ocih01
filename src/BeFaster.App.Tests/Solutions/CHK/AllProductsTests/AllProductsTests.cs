@@ -1,5 +1,6 @@
 ﻿using BeFaster.App.Solutions.CHK;
 using BeFaster.App.Solutions.CHK.Models;
+using BeFaster.App.Tests.Solutions.CHK.TestModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -9,11 +10,11 @@ namespace BeFaster.App.Tests.Solutions.CHK.AllProductsTests
     [TestClass]
     public class AllProductsTests
     {
-        private static IList<Product> products = GetProducts();
+        private static IList<TestProduct> products = GetProducts();
 
-        private static IList<Product> GetProducts()
+        private static IList<TestProduct> GetProducts()
         {
-            return JsonConvert.DeserializeObject<List<Product>>(GetProductsAsJsonString());
+            return JsonConvert.DeserializeObject<List<TestProduct>>(GetProductsAsJsonString());
         }
 
         //I could not use Json file directly for some reason, hence doing it this way
@@ -43,7 +44,7 @@ namespace BeFaster.App.Tests.Solutions.CHK.AllProductsTests
         [TestMethod]
         public void ComputePrice_Should_Return_CorrectPrice_For_Product_K_Given_MultipleValues()
         {
-            Assert.AreEqual(150, CheckoutSolution.ComputePrice("KK"));
+            Assert.AreEqual(120, CheckoutSolution.ComputePrice("KK"));
         }
 
         [TestMethod]
@@ -84,3 +85,4 @@ namespace BeFaster.App.Tests.Solutions.CHK.AllProductsTests
         #endregion
     }
 }
+

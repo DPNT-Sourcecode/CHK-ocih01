@@ -1,12 +1,14 @@
-﻿using System;
+﻿using BeFaster.App.Solutions.CHK.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BeFaster.App.Tests.Solutions.CHK.TestModel
 {
-    class TestProduct
+    public class TestProduct
     {
+        public char Id { get; set; }
+        public int Price { get; set; }
+        public IList<BuyMultipleOfSameForPriceReductionOffer> BuyMultipleForPriceReductionOffers { get; set; }
+        public BuyOneGetAnotherFreeOffer BuyOneGetAnotherFreeOffer { get; set; }
     }
 }
+
