@@ -41,11 +41,7 @@ namespace BeFaster.App.Solutions.CHK
                     skuCounts.Add(sku, 1);
                 }
             }
-
-            var offers = products.Where(x => x.Value.BuyOneGetAnotherFreeOffers != null).ToDictionary(s => s.Key, s => s.Value.BuyOneGetAnotherFreeOffers);
-
-            skuCounts = specialOfferService.ApplyBuyOneProductGetAnotherProductFreeOffer(skuCounts, offers);
-            return skuCounts;
+            return specialOfferService.ApplyBuyOneProductGetAnotherProductFreeOffer(skuCounts, buyOneGetAnotherProductOffers);
         }
 
         private static int GetTotalPrice(IDictionary<char, int> skuCounts)
@@ -53,10 +49,10 @@ namespace BeFaster.App.Solutions.CHK
             int totalPrice = 0;
 
             foreach (var skuCount in skuCounts)
-            {
-                var product = products[skuCount.Key];
-                if (product != null)
+            {                
+                if (products.Keys.Contains(skuCount.Key))
                 {
+                    var product = products[skuCount.Key];
                     var offers = product.BuyMultipleForPriceReductionOffers;
                     totalPrice += offers != null && offers.Any() ? specialOfferService.GetDiscountedPrice(skuCount.Key, skuCount.Value, product.Price, offers) 
                         : product.Price * skuCount.Value;
@@ -89,9 +85,11 @@ namespace BeFaster.App.Solutions.CHK
             products = productList.ToDictionary(x => x.Id, x => x);
             return products;
         }
+
         private static Dictionary<char, IList<BuyOneGetAnotherFreeOffer>> GetBuyOneGetAnotherProductOffersOffers()
         {
             return products.Where(x => x.Value.BuyOneGetAnotherFreeOffers != null).ToDictionary(s => s.Key, s => s.Value.BuyOneGetAnotherFreeOffers);
         }
     }
 }
+
