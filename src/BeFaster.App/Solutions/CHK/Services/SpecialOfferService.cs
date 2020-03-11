@@ -147,7 +147,7 @@ namespace BeFaster.App.Solutions.CHK.Services
                     productsToGroupWithOther = 0;
                     break;
                 }
-                if (productsToGroupWithOther > 0 || sumOfSkusThatMatchOffer < offer.ItemQuantity)
+                if (productsToGroupWithOther > 0 || sumOfSkusThatMatchOffer >= offer.ItemQuantity)
                 {
                     skuCounts[product.Key] = productsToGroupWithOther + skuCounts[product.Key];
                     productsToGroupWithOther = skuCounts[product.Key] % offer.ItemQuantity;
@@ -163,5 +163,3 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
     }
 }
-
-
