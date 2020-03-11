@@ -134,9 +134,10 @@ namespace BeFaster.App.Solutions.CHK.Repositories
             };
         }
 
-        public IList<ISpecialOffer> GetSpecialOffersByType(SpecialOfferType specialOfferType)
+        public IList<T> GetSpecialOffersByType<T>() where T : class
         {
-            return GetAllSpecialOffers().Where(x => x.OfferType == specialOfferType).ToList();
+            return GetAllSpecialOffers().OfType<T>().ToList();
         }
     }
 }
+

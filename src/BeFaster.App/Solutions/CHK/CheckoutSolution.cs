@@ -40,7 +40,8 @@ namespace BeFaster.App.Solutions.CHK
                     skuCounts.Add(sku, 1);
                 }
             }
-            return specialOfferService.ApplyBuyOneProductGetAnotherProductFreeOffer(skuCounts, buyOneGetAnotherProductOffers);
+            var buyOneGetAnotherFreeOffers = specialOffersRepository.GetSpecialOffersByType<BuyOneGetAnotherFreeOffer>();
+            return specialOfferService.ApplyBuyOneProductGetAnotherProductFreeOffer(skuCounts, buyOneGetAnotherFreeOffers);
         }
 
         private static int GetTotalPrice(IDictionary<char, int> skuCounts)
@@ -69,3 +70,4 @@ namespace BeFaster.App.Solutions.CHK
 
     }
 }
+
