@@ -10,7 +10,7 @@ namespace BeFaster.App.Solutions.CHK.Services
         public int GetDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice, IList<SpecialOffer> specialOffers)
         {
             int discountedPrice = 0;
-            var offers = specialOffers.OrderByDescending(x=>x.ItemQuantity).OfType<BuyMultipleForPriceReduction>();
+            var offers = specialOffers.OrderByDescending(x=>x.ItemQuantity).Cast<BuyMultipleForPriceReduction>();
 
             foreach (BuyMultipleForPriceReduction offer in offers)
             {
@@ -32,7 +32,7 @@ namespace BeFaster.App.Solutions.CHK.Services
 
         public IDictionary<char, int> ApplyBuyOneProductGetAnotherProductFreeOffer(IDictionary<char, int> skuCounts, Dictionary<char, IList<SpecialOffer>> specialOffers)
         {
-            var offers = specialOffers.OfType<BuyOneGetAnotherFree>();
+            var offers = specialOffers.Cast<BuyOneGetAnotherFree>();
             foreach (var offer in specialOffers)
             {
                 if (skuCounts.Keys.Contains(offer.Key))
@@ -75,6 +75,7 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
     }
 }
+
 
 
 
