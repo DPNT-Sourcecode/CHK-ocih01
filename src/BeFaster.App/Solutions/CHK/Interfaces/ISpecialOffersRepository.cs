@@ -10,5 +10,3 @@ namespace BeFaster.App.Solutions.CHK.Interfaces
         IEnumerable<T> GetSpecialOffersByType<T>() where T : class;
     }
 }
-
-

@@ -8,4 +8,3 @@ namespace BeFaster.App.Solutions.CHK.Interfaces
         IDictionary<char, Product> GetAllProducts();
     }
 }
-
