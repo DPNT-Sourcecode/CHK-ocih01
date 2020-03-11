@@ -37,19 +37,19 @@
   {
     "Id": "E",
     "Price": 40,
-    "SpecialOffers": [
+    "BuyOneGetAnotherFreeOffer": [
       {
         "Type": 1,
         "ItemQuantity": 2,
         "FreeItemId": "B",
-        "FreeItemQuantity" :  1
+        "FreeItemQuantity": 1
       }
     ]
   },
   {
     "Id": "F",
     "Price": 10,
-    "BuyMultipleForPriceReductionOffers": [
+    "BuyOneGetAnotherFreeOffer": [
       {
         "Type": 1,
         "ItemQuantity": 2,
@@ -108,7 +108,7 @@
   {
     "Id": "N",
     "Price": 40,
-    "BuyMultipleForPriceReductionOffers": [
+    "BuyOneGetAnotherFreeOffer": [
       {
         "Type": 1,
         "ItemQuantity": 3,
@@ -146,7 +146,7 @@
   {
     "Id": "R",
     "Price": 50,
-    "SpecialOffers": [
+    "BuyOneGetAnotherFreeOffer": [
       {
         "Type": 1,
         "ItemQuantity": 3,
@@ -166,7 +166,7 @@
   {
     "Id": "U",
     "Price": 40,
-    "SpecialOffers": [
+    "BuyOneGetAnotherFreeOffer": [
       {
         "Type": 1,
         "ItemQuantity": 3,
@@ -208,4 +208,5 @@
     "Price": 50
   }
 ]
+
 
