@@ -72,9 +72,9 @@ namespace BeFaster.App.Solutions.CHK
         private static IDictionary<char, Product> GetProducts()
         {
             var products = new Dictionary<char, Product>();
-            List<Product> productList = new List<Product>();
+           List<Product> productList = new List<Product>();
  
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"Solutions\CHK\Data\Products1.json");
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"Solutions\CHK\Data\Products.json");
 
             JsonSerializer serializer = new JsonSerializer();
             using (FileStream s = File.Open(filePath, FileMode.Open))
@@ -86,10 +86,8 @@ namespace BeFaster.App.Solutions.CHK
                     productList = serializer.Deserialize<List<Product>>(reader);
                 }
             }
-            products = productList.ToDictionary(x => x.Id, x=>x);
+            products = productList.ToDictionary(x => x.Id, x => x);
             return products;
         }        
     }
 }
-
-
