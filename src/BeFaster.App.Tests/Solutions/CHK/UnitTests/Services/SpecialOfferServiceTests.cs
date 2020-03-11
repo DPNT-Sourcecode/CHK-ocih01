@@ -95,14 +95,29 @@ namespace BeFaster.App.Tests.Solutions.CHK.UnitTests.Services
         [TestMethod]
         public void ApplyBuyOneProductGetAnotherProductFreeOffer_Should_Return_Correct_Counts_Given_BuyOneGetSameProductOffers()
         {
-            mockSpecialOffersRepository.Setup(x => x.GetSpecialOffersByType<BuyOneGetAnotherFreeOffer>()).Returns().Verifiable();
+            mockSpecialOffersRepository.Setup(x => x.GetSpecialOffersByType<BuyOneGetAnotherFreeOffer>()).Returns(GetBuyOneGetAnotherFreeOffers()).Verifiable();
 
             var skuCounts = new Dictionary<char, int>(1);
-            skuCounts.Add('A', 2);
+            skuCounts.Add('A', 6);
 
             var actualSkuCounts = specialOfferService.ApplyBuyOneProductGetAnotherProductFreeOffer(skuCounts);
 
-            Assert.AreEqual(skuCounts, actualSkuCounts);
+            Assert.AreEqual(5, actualSkuCounts['A']);
+            mockSpecialOffersRepository.Verify(x => x.GetSpecialOffersByType<BuyOneGetAnotherFreeOffer>(), Times.Once);
+        }
+
+        [TestMethod]
+        public void ApplyBuyOneProductGetAnotherProductFreeOffer_Should_Return_Correct_Counts_Given_BuyOneGetDifferentProductOffers()
+        {
+            mockSpecialOffersRepository.Setup(x => x.GetSpecialOffersByType<BuyOneGetAnotherFreeOffer>()).Returns(GetBuyOneGetAnotherFreeOffers()).Verifiable();
+
+            var skuCounts = new Dictionary<char, int>(1);
+            skuCounts.Add('E', 2);
+            skuCounts.Add('B', 2);
+
+            var actualSkuCounts = specialOfferService.ApplyBuyOneProductGetAnotherProductFreeOffer(skuCounts);
+
+            Assert.AreEqual(1, actualSkuCounts['B']);
             mockSpecialOffersRepository.Verify(x => x.GetSpecialOffersByType<BuyOneGetAnotherFreeOffer>(), Times.Once);
         }
 
@@ -151,6 +166,7 @@ namespace BeFaster.App.Tests.Solutions.CHK.UnitTests.Services
         }
     }
 }
+
 
 
 
