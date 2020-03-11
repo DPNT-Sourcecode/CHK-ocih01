@@ -60,9 +60,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Solutions\CHK\AllProductsTests\AllProductsTests.cs" />
+    <Compile Include="Solutions\CHK\E2ETests\AllProductsTests.cs" />
     <Compile Include="Solutions\CHK\CheckOutSolutionTests.cs" />
-    <Compile Include="Solutions\CHK\TestModel\TestProduct.cs" />
+    <Compile Include="Solutions\CHK\E2ETests\InputValidationTests.cs" />
+    <Compile Include="Solutions\CHK\E2ETests\SpecialOfferTests.cs" />
+    <Compile Include="Solutions\CHK\TestModels\TestProduct.cs" />
     <Compile Include="Solutions\HLO\HelloSolutionTests.cs" />
     <Compile Include="Solutions\SUM\SumSolutionTest.cs" />
     <Compile Include="Solutions\TST\OneTest.cs" />
@@ -80,7 +82,9 @@
       <Name>BeFaster.App</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Solutions\CHK\UnitTests\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
