@@ -138,15 +138,21 @@ namespace BeFaster.App.Solutions.CHK.Services
                 if (isFirstProduct)
                 {
                     productsToGroupWithOther = (skuCounts[product.Key]) % offer.ItemQuantity;
-                    skuCounts[product.Key] -= productsToGroupWithOther;                    
+                    skuCounts[product.Key] -= productsToGroupWithOther;
                     isFirstProduct = false;
                 }
-                else if(productsToGroupWithOther > 0 ||  sumOfSkusThatMatchOffer >= offer.ItemQuantity)
+                else if (productsToGroupWithOther > 0 && sumOfSkusThatMatchOffer < offer.ItemQuantity)
+                {
+                    skuCounts[previousProductId] += productsToGroupWithOther;
+                    productsToGroupWithOther = 0;
+                    break;
+                }
+                if (productsToGroupWithOther > 0 || sumOfSkusThatMatchOffer < offer.ItemQuantity)
                 {
                     skuCounts[product.Key] = productsToGroupWithOther + skuCounts[product.Key];
                     productsToGroupWithOther = skuCounts[product.Key] % offer.ItemQuantity;
                     skuCounts[product.Key] -= productsToGroupWithOther;
-                }
+                }             
                 sumOfSkusThatMatchOffer = sumOfSkusThatMatchOffer - skuCounts[product.Key];
                 previousProductId = product.Key;
             }
@@ -157,4 +163,5 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
     }
 }
+
 
