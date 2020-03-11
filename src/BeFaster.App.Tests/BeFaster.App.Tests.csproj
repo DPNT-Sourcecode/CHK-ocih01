@@ -67,6 +67,7 @@
     <Compile Include="Solutions\CHK\TestModels\TestProduct.cs" />
     <Compile Include="Solutions\CHK\UnitTests\Repositories\ProductRepositoryTests.cs" />
     <Compile Include="Solutions\CHK\UnitTests\Repositories\SpecialOffersRepositoryTests.cs" />
+    <Compile Include="Solutions\CHK\UnitTests\Services\SpecialOfferServiceTests.cs" />
     <Compile Include="Solutions\HLO\HelloSolutionTests.cs" />
     <Compile Include="Solutions\SUM\SumSolutionTest.cs" />
     <Compile Include="Solutions\TST\OneTest.cs" />
@@ -84,9 +85,7 @@
       <Name>BeFaster.App</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Solutions\CHK\UnitTests\Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -98,4 +97,3 @@
   </Target>
   <Import Project="..\..\packages\MSTest.TestAdapter.2.1.0\build\net45\MSTest.TestAdapter.targets" Condition="Exists('..\..\packages\MSTest.TestAdapter.2.1.0\build\net45\MSTest.TestAdapter.targets')" />
 </Project>
-
