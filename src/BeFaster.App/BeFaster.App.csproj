@@ -62,12 +62,17 @@
     <Compile Include="SendCommandToServer.cs" />
     <Compile Include="Solutions\CHK\CheckoutSolution.cs" />
     <Compile Include="Solutions\CHK\Enums\SpecialOfferType.cs" />
+    <Compile Include="Solutions\CHK\Interfaces\IProductsRepository.cs" />
     <Compile Include="Solutions\CHK\Interfaces\ISpecialOffer.cs" />
     <Compile Include="Solutions\CHK\Interfaces\ISpecialOfferService.cs" />
+    <Compile Include="Solutions\CHK\Interfaces\ISpecialOffersRepository.cs" />
+    <Compile Include="Solutions\CHK\Models\BuyInBulkFromAGroupForPriceReductionOffer.cs" />
     <Compile Include="Solutions\CHK\Models\BuyMultipleForPriceReductionOffer.cs" />
     <Compile Include="Solutions\CHK\Models\BuyOneGetAnotherFreeOffer.cs" />
     <Compile Include="Solutions\CHK\Models\Product.cs" />
     <Compile Include="Solutions\CHK\Models\SpecialOffer.cs" />
+    <Compile Include="Solutions\CHK\Repositories\ProductsRepository.cs" />
+    <Compile Include="Solutions\CHK\Repositories\SpecialOffersRepository.cs" />
     <Compile Include="Solutions\CHK\Services\SpecialOfferService.cs" />
     <Compile Include="Solutions\FIZ\FizzBuzzSolution.cs" />
     <Compile Include="Solutions\HLO\HelloSolution.cs" />

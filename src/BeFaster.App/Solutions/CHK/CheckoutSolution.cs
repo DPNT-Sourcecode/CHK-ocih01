@@ -2,7 +2,6 @@
 using BeFaster.App.Solutions.CHK.Repositories;
 using BeFaster.App.Solutions.CHK.Services;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace BeFaster.App.Solutions.CHK
 {
@@ -52,14 +51,11 @@ namespace BeFaster.App.Solutions.CHK
                 if (!products.Keys.Contains(skuCount.Key))
                     return invalidInput;
                 
-                var product = products[skuCount.Key];                   
-                    
-                totalPrice += offers != null && offers.Any() ? 
-                    specialOfferService.GetDiscountedPrice(skuCount.Key, skuCount.Value, product.Price)
-                    : product.Price * skuCount.Value;
-
+                var product = products[skuCount.Key];
+                totalPrice += specialOfferService.GetDiscountedPrice(skuCount.Key, skuCount.Value, product.Price);
             }
             return totalPrice;
         }
     }
 }
+
