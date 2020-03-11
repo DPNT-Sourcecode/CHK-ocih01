@@ -13,7 +13,7 @@ namespace BeFaster.App.Tests.Solutions.CHK.UnitTests.Repositories
         {
             var offers = new SpecialOffersRepository().GetAllSpecialOffers();
 
-            Assert.AreEqual(13, offers.Count);
+            Assert.AreEqual(16, offers.Count);
         }
 
         [TestMethod]
@@ -21,7 +21,7 @@ namespace BeFaster.App.Tests.Solutions.CHK.UnitTests.Repositories
         {
             var offersCount = new SpecialOffersRepository().GetSpecialOffersByType<BuyMultipleOfSameForPriceReductionOffer>().Count();
 
-            Assert.AreEqual(7, offersCount);
+            Assert.AreEqual(10, offersCount);
         }
 
         [TestMethod]
@@ -29,7 +29,7 @@ namespace BeFaster.App.Tests.Solutions.CHK.UnitTests.Repositories
         {
             var offersCount = new SpecialOffersRepository().GetSpecialOffersByType<BuyOneGetAnotherFreeOffer>().Count();
 
-            Assert.AreEqual(7, offersCount);
+            Assert.AreEqual(5, offersCount);
         }
 
         [TestMethod]
@@ -41,4 +41,5 @@ namespace BeFaster.App.Tests.Solutions.CHK.UnitTests.Repositories
         }
     }
 }
+
 
