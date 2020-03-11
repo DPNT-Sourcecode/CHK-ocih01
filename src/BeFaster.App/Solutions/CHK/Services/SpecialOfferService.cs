@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace BeFaster.App.Solutions.CHK.Services
 {
-    public class SpecialOfferService : ISpecialOfferService
+    public class SpecialOfferService 
     {
         public int GetDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice, IList<SpecialOffer> specialOffers)
         {
@@ -75,3 +75,4 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
     }
 }
+
