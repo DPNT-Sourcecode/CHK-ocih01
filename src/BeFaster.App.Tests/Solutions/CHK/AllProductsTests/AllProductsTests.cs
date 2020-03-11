@@ -1,4 +1,5 @@
-﻿using BeFaster.App.Solutions.CHK.Models;
+﻿using BeFaster.App.Solutions.CHK;
+using BeFaster.App.Solutions.CHK.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -10,12 +11,11 @@ namespace BeFaster.App.Tests.Solutions.CHK.AllProductsTests
     [TestClass]
     public class AllProductsTests
     {
-        private static IDictionary<char, Product> products = GetProducts();
+        private static IList<Product> products = GetProducts();
 
-        private static IDictionary<char, Product> GetProducts()
+        private static IList<Product> GetProducts()
         {
-            var products = new Dictionary<char, Product>();
-            List<Product> productList = new List<Product>();
+            IList<Product> productList = new List<Product>();
 
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"Solutions\CHK\TestData\Products.json");
 
@@ -29,8 +29,17 @@ namespace BeFaster.App.Tests.Solutions.CHK.AllProductsTests
                     productList = serializer.Deserialize<List<Product>>(reader);
                 }
             }
-            products = productList.ToDictionary(x => x.Id, x => x);
-            return products;
+            return productList;
+        }
+
+        [TestMethod]
+        public void CheckAllProductPricesAreCorrect()
+        {
+            foreach (var product in products)
+            {
+                Assert.AreEqual(product.Price, CheckoutSolution.ComputePrice(product.Id.ToString()));
+            }
         }
     }
 }
+

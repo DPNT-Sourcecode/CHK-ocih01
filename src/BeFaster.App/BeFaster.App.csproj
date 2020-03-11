@@ -85,7 +85,6 @@
     <None Include="Solutions\CHK\Data\Products.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Solutions\CHK\Data\SpecialOffers.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BeFaster.Runner\BeFaster.Runner.csproj">
