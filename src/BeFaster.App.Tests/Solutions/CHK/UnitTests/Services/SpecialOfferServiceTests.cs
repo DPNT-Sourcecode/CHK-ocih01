@@ -52,6 +52,28 @@ namespace BeFaster.App.Tests.Solutions.CHK.UnitTests.Services
             mockSpecialOffersRepository.Verify(x => x.GetSpecialOffersByType<BuyMultipleOfSameForPriceReductionOffer>(), Times.Once);
         }
 
+        [TestMethod]
+        public void GetDiscountedPrice_Should_Return_CorrectPrice_Given_MultiBuyOffers_That_DoesNot_Match()
+        {
+            mockSpecialOffersRepository.Setup(x => x.GetSpecialOffersByType<BuyMultipleOfSameForPriceReductionOffer>()).Returns(GetMultiBuyOffers()).Verifiable();
+
+            var price = specialOfferService.GetDiscountedPrice('A', 1, 50);
+
+            Assert.AreEqual(50, price);
+            mockSpecialOffersRepository.Verify(x => x.GetSpecialOffersByType<BuyMultipleOfSameForPriceReductionOffer>(), Times.Once);
+        }
+
+        [TestMethod]
+        public void GetDiscountedPrice_Should_Return_CorrectPrice_Given_No_MultiBuyOffers()
+        {
+            mockSpecialOffersRepository.Setup(x => x.GetSpecialOffersByType<BuyMultipleOfSameForPriceReductionOffer>()).Verifiable();
+
+            var price = specialOfferService.GetDiscountedPrice('C', 2, 50);
+
+            Assert.AreEqual(100, price);
+            mockSpecialOffersRepository.Verify(x => x.GetSpecialOffersByType<BuyMultipleOfSameForPriceReductionOffer>(), Times.Once);
+        }
+
         private static List<BuyMultipleOfSameForPriceReductionOffer> GetMultiBuyOffers()
         {
             return new List<BuyMultipleOfSameForPriceReductionOffer>
@@ -74,3 +96,4 @@ namespace BeFaster.App.Tests.Solutions.CHK.UnitTests.Services
         }
     }
 }
+
