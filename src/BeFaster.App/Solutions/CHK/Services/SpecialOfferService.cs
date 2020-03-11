@@ -36,7 +36,7 @@ namespace BeFaster.App.Solutions.CHK.Services
             {
                 if (skuCounts.Keys.Contains(offer.Key))
                 {
-                    foreach (BuyOneGetAnotherFree buyOneGetOneOffer in offer.Value)
+                    foreach (BuyOneGetAnotherFreeOffer buyOneGetOneOffer in offer.Value)
                     {
                         if (skuCounts[offer.Key] >= buyOneGetOneOffer.ItemQuantity && skuCounts.Keys.Contains(buyOneGetOneOffer.FreeItemId))
                         {
@@ -58,7 +58,7 @@ namespace BeFaster.App.Solutions.CHK.Services
             return skuCounts;
         }
 
-        private IDictionary<char, int> ApplyBuyOneProductGetSameProductFreeOffer(IDictionary<char, int> skuCounts, BuyOneGetAnotherFree buyOneGetOneOffer)
+        private IDictionary<char, int> ApplyBuyOneProductGetSameProductFreeOffer(IDictionary<char, int> skuCounts, BuyOneGetAnotherFreeOffer buyOneGetOneOffer)
         {
             int productItemCount = skuCounts[buyOneGetOneOffer.FreeItemId];
             while (productItemCount >= buyOneGetOneOffer.ItemQuantity)
@@ -74,4 +74,5 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
     }
 }
+
 

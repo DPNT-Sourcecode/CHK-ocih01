@@ -2,7 +2,7 @@
   {
     "Id": "A",
     "Price": 50,
-    "SpecialOffers": [
+    "BuyMultipleForPriceReductionOffers": [
       {
         "Type": 0,
         "ItemQuantity": 3,
@@ -18,7 +18,7 @@
   {
     "Id": "B",
     "Price": 30,
-    "SpecialOffers": [
+    "BuyMultipleForPriceReductionOffers": [
       {
         "Type": 0,
         "ItemQuantity": 2,
@@ -49,7 +49,7 @@
   {
     "Id": "F",
     "Price": 10,
-    "SpecialOffers": [
+    "BuyMultipleForPriceReductionOffers": [
       {
         "Type": 1,
         "ItemQuantity": 2,
@@ -65,7 +65,7 @@
   {
     "Id": "H",
     "Price": 10,
-    "SpecialOffers": [
+    "BuyMultipleForPriceReductionOffers": [
       {
         "Type": 0,
         "ItemQuantity": 5,
@@ -89,7 +89,7 @@
   {
     "Id": "K",
     "Price": 80,
-    "SpecialOffers": [
+    "BuyMultipleForPriceReductionOffers": [
       {
         "Type": 0,
         "ItemQuantity": 2,
@@ -108,7 +108,7 @@
   {
     "Id": "N",
     "Price": 40,
-    "SpecialOffers": [
+    "BuyMultipleForPriceReductionOffers": [
       {
         "Type": 1,
         "ItemQuantity": 3,
@@ -124,7 +124,7 @@
   {
     "Id": "P",
     "Price": 50,
-    "SpecialOffers": [
+    "BuyMultipleForPriceReductionOffers": [
       {
         "Type": 0,
         "ItemQuantity": 5,
@@ -135,7 +135,7 @@
   {
     "Id": "Q",
     "Price": 30,
-    "SpecialOffers": [
+    "BuyMultipleForPriceReductionOffers": [
       {
         "Type": 0,
         "ItemQuantity": 3,
@@ -178,7 +178,7 @@
   {
     "Id": "V",
     "Price": 50,
-    "SpecialOffers": [
+    "BuyMultipleForPriceReductionOffers": [
       {
         "Type": 0,
         "ItemQuantity": 2,
@@ -208,3 +208,4 @@
     "Price": 50
   }
 ]
+
