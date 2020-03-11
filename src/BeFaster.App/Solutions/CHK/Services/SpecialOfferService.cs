@@ -7,11 +7,11 @@ namespace BeFaster.App.Solutions.CHK.Services
 {
     public class SpecialOfferService : ISpecialOfferService
     {
-        public int GetDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice, IList<BuyMultipleForPriceReductionOffer> specialOffers)
+        public int GetDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice, IList<BuyMultipleOfSameForPriceReductionOffer> specialOffers)
         {
             int discountedPrice = 0;
             specialOffers = specialOffers.OrderByDescending(x => x.ItemQuantity).ToList();
-            foreach (BuyMultipleForPriceReductionOffer offer in specialOffers)
+            foreach (BuyMultipleOfSameForPriceReductionOffer offer in specialOffers)
             {
                 if (cartItemQuantity < offer.ItemQuantity) continue;
 
