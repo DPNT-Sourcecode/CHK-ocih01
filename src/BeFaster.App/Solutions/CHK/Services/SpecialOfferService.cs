@@ -8,17 +8,10 @@ namespace BeFaster.App.Solutions.CHK.Services
 {
     public class SpecialOfferService : ISpecialOfferService
     {
-        private readonly IDictionary<char, IList<ISpecialOffer>> _specialOffers;
-
-        public SpecialOfferService(IDictionary<char, IList<ISpecialOffer>> specialOffers)
-        {
-            _specialOffers = specialOffers;
-        }
-
-        public int GetDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice)
+        public int GetDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice, IEnumerable<ISpecialOffer> specialOffers)
         {
             int discountedPrice = 0;
-            var specialOffers = _specialOffers[productId].OrderByDescending(x=>x.ItemQuantity);
+            specialOffers = specialOffers.ToList().OrderByDescending(x=>x.ItemQuantity);
 
             foreach (BuyMultipleForPriceReduction offer in specialOffers)
             {
@@ -38,12 +31,9 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
 
 
-        public IDictionary<char, int> ApplyBuyOneProductGetAnotherProductFreeOffer(IDictionary<char, int> skuCounts)
+        public IDictionary<char, int> ApplyBuyOneProductGetAnotherProductFreeOffer(IDictionary<char, int> skuCounts, Dictionary<char, List<ISpecialOffer>> specialOffers)
         {
-            var offers = _specialOffers.Where(x => x.Value.Any(y => y.GetType().Equals(typeof(BuyOneGetAnotherFree))))
-                .ToDictionary(s => s.Key, s => s.Value.Where(z => z.OfferType == Enums.SpecialOfferType.BuyOneGetAnotherFree).ToList());
-
-            foreach (var offer in offers)
+            foreach (var offer in specialOffers)
             {
                 if (skuCounts.Keys.Contains(offer.Key))
                 {
