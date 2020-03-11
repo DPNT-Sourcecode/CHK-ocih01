@@ -1,5 +1,6 @@
 ﻿using BeFaster.App.Solutions.CHK.Interfaces;
 using BeFaster.App.Solutions.CHK.Models;
+using BeFaster.App.Solutions.CHK.Repositories;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,10 +8,15 @@ namespace BeFaster.App.Solutions.CHK.Services
 {
     public class SpecialOfferService : ISpecialOfferService
     {
-        public int GetDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice, IList<BuyMultipleOfSameForPriceReductionOffer> specialOffers)
+        private static readonly ISpecialOffersRepository specialOffersRepository = new SpecialOffersRepository();
+
+        public int GetDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice)
         {
             int discountedPrice = 0;
-            specialOffers = specialOffers.OrderByDescending(x => x.ItemQuantity).ToList();
+            var specialOffers = specialOffersRepository.GetSpecialOffersByType<BuyMultipleOfSameForPriceReductionOffer>().
+                Where(x=>x.ProductId == productId).
+                OrderByDescending(x => x.ItemQuantity).ToList();
+
             foreach (BuyMultipleOfSameForPriceReductionOffer offer in specialOffers)
             {
                 if (cartItemQuantity < offer.ItemQuantity) continue;
@@ -71,3 +77,4 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
     }
 }
+
