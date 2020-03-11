@@ -76,5 +76,18 @@ namespace BeFaster.App.Tests.Solutions.CHK.AllProductsTests
         {
             Assert.AreEqual(120, CheckoutSolution.ComputePrice("NNNM"));
         }
+
+        [TestMethod]
+        public void ComputePrice_Should_Return_CorrectPrice_For_Product_R_Given_MultipleValues_Combined_With_Q()
+        {
+            Assert.AreEqual(150, CheckoutSolution.ComputePrice("RRRQ"));
+        }
+
+        [TestMethod]
+        public void ComputePrice_Should_Return_CorrectPrice_For_Product_U_Given_MultipleValues()
+        {
+            Assert.AreEqual(120, CheckoutSolution.ComputePrice("UUUU"));
+        }
     }
 }
+
