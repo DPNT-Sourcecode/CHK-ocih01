@@ -66,7 +66,6 @@
     <Compile Include="Solutions\CHK\Interfaces\ISpecialOffer.cs" />
     <Compile Include="Solutions\CHK\Interfaces\ISpecialOfferService.cs" />
     <Compile Include="Solutions\CHK\Interfaces\ISpecialOffersRepository.cs" />
-    <Compile Include="Solutions\CHK\Models\BuyInBulkFromAGroupForPriceReductionOffer.cs" />
     <Compile Include="Solutions\CHK\Models\BuyMultipleForPriceReductionOffer.cs" />
     <Compile Include="Solutions\CHK\Models\BuyOneGetAnotherFreeOffer.cs" />
     <Compile Include="Solutions\CHK\Models\Product.cs" />

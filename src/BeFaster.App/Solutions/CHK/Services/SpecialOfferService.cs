@@ -16,12 +16,12 @@ namespace BeFaster.App.Solutions.CHK.Services
 
         public int GetDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice)
         {
-            var buyMultipleOfSameForPriceReductionOffers = specialOffersRepository.GetSpecialOffersByType<BuyMultipleOfSameForPriceReductionOffer>().
+            var offers = specialOffersRepository.GetSpecialOffersByType<BuyMultipleOfSameForPriceReductionOffer>().
                 Where(x=>x.ProductId == productId).
                 OrderByDescending(x => x.ItemQuantity).ToList();
 
-             return buyMultipleOfSameForPriceReductionOffers != null && buyMultipleOfSameForPriceReductionOffers.Any() ?
-                        GetDiscountedPrice(buyMultipleOfSameForPriceReductionOffers, cartItemQuantity, actualProductPrice)
+             return offers != null && offers.Any() ?
+                        GetDiscountedPrice(offers, cartItemQuantity, actualProductPrice)
                         : actualProductPrice * cartItemQuantity;
         }
 
@@ -88,3 +88,4 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
     }
 }
+
