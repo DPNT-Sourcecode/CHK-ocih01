@@ -5,7 +5,8 @@ namespace BeFaster.App.Solutions.CHK.Interfaces
 {
     public interface ISpecialOfferService
     {
-        int GetDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice, IList<SpecialOffer> specialOffers);
-        IDictionary<char, int> ApplyBuyOneProductGetAnotherProductFreeOffer(IDictionary<char, int> skuCounts, Dictionary<char, IList<SpecialOffer>> offers);
+        int GetDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice, IList<BuyMultipleForPriceReductionOffer> specialOffers);
+        IDictionary<char, int> ApplyBuyOneProductGetAnotherProductFreeOffer(IDictionary<char, int> skuCounts, Dictionary<char, IList<BuyOneGetAnotherFreeOffer>> offers);
     }
 }
+

@@ -12,7 +12,6 @@ namespace BeFaster.App.Solutions.CHK
     public static class CheckoutSolution
     {
         public static IDictionary<char, Product> Products = GetProducts();
-        public static IDictionary<char, IList<SpecialOffer>> specialOffers = GetSpecialOffers();
 
 
         public static readonly ISpecialOfferService specialOfferService = new SpecialOfferService();
@@ -44,8 +43,7 @@ namespace BeFaster.App.Solutions.CHK
                 }
             }
 
-            var offers = Products.Where(x => x.Value.SpecialOffers != null && x.Value.SpecialOffers.Any(y => y.OfferType == Enums.SpecialOfferType.BuyOneGetAnotherFree))
-                .ToDictionary(s => s.Key, s => s.Value.SpecialOffers);
+            var offers = Products.Where(x => x.Value.BuyOneGetAnotherFreeOffers != null).ToDictionary(s => s.Key, s => s.Value.BuyOneGetAnotherFreeOffers);
 
             skuCounts = specialOfferService.ApplyBuyOneProductGetAnotherProductFreeOffer(skuCounts, offers);
             return skuCounts;
@@ -60,8 +58,8 @@ namespace BeFaster.App.Solutions.CHK
                 var product = Products[skuCount.Key];
                 if (product != null)
                 {
-                    var offers = product.SpecialOffers.Where(x => x.OfferType == Enums.SpecialOfferType.BuyMultipleForPriceReduction).ToList();
-                    totalPrice += offers.Any() ? specialOfferService.GetDiscountedPrice(skuCount.Key, skuCount.Value, product.Price, product.SpecialOffers) : product.Price * skuCount.Value;
+                    var offers = product.BuyMultipleForPriceReductionOffers;
+                    totalPrice += offers.Any() ? specialOfferService.GetDiscountedPrice(skuCount.Key, skuCount.Value, product.Price, offers) : product.Price * skuCount.Value;
                 }
                 else
                 {
@@ -91,10 +89,6 @@ namespace BeFaster.App.Solutions.CHK
             products = productList.ToDictionary(x => x.Id, x => x);
             return products;
         }
-
-        private static IDictionary<char, IList<SpecialOffer>> GetSpecialOffers()
-        {
-            return Products.Where(x => x.Value.SpecialOffers != null).ToDictionary(s => s.Key, s => s.Value.SpecialOffers);
-        }
     }
 }
+
