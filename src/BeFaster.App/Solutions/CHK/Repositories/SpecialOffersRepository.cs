@@ -140,7 +140,3 @@ namespace BeFaster.App.Solutions.CHK.Repositories
         }
     }
 }
-
-
-
-

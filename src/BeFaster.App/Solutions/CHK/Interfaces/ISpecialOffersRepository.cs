@@ -10,5 +10,3 @@ namespace BeFaster.App.Solutions.CHK.Interfaces
         IList<ISpecialOffer> GetSpecialOffersByType(SpecialOfferType specialOfferType );
     }
 }
-
-

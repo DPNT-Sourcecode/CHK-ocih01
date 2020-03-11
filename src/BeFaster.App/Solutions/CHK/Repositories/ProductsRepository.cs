@@ -6,7 +6,7 @@ namespace BeFaster.App.Solutions.CHK.Repositories
 {
     public class ProductsRepository : IProductsRepository
     {
-        public IDictionary<char, Product> GetProducts()
+        public IDictionary<char, Product> GetAllProducts()
         {
             IDictionary<char, Product> products = new Dictionary<char, Product>(26);
             IList<int> priceList = GetPriceList();
