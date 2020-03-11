@@ -295,6 +295,13 @@ namespace BeFaster.App.Tests.Solutions.CHK.E2ETests
         {
             Assert.AreEqual(87, CheckoutSolution.ComputePrice("XYA"));
         }
+
+        [TestMethod]
+        public void ComputePrice_Should_Return_CorrectPrice_For_Combination_Of_Product_CXYZYZC()
+        {
+            Assert.AreEqual(122, CheckoutSolution.ComputePrice("CXYZYZC"));
+        }
         #endregion
     }
 }
+
