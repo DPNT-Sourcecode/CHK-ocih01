@@ -11,7 +11,10 @@ namespace BeFaster.App.Solutions.CHK
 {
     public static class CheckoutSolution
     {
-        public static readonly IDictionary<char, Product> Products = GetProducts();
+        public static IDictionary<char, Product> Products = GetProducts();
+        public static IDictionary<char, IList<SpecialOffer>> specialOffers = GetSpecialOffers();
+
+
         public static readonly ISpecialOfferService specialOfferService = new SpecialOfferService();
         private const int invalidInput = -1;
 
@@ -19,8 +22,8 @@ namespace BeFaster.App.Solutions.CHK
         {
             if (skus == null) { return invalidInput; }
 
-            if (skus.Trim() == string.Empty) { return 0; }            
-            
+            if (skus.Trim() == string.Empty) { return 0; }
+
             IDictionary<char, int> skuCounts = GetSkuCounts(skus);
 
             return GetTotalPrice(skuCounts);
@@ -31,7 +34,7 @@ namespace BeFaster.App.Solutions.CHK
             IDictionary<char, int> skuCounts = new Dictionary<char, int>();
             foreach (char sku in skus)
             {
-                if(skuCounts.ContainsKey(sku))
+                if (skuCounts.ContainsKey(sku))
                 {
                     skuCounts[sku] = skuCounts[sku] + 1;
                 }
@@ -41,7 +44,7 @@ namespace BeFaster.App.Solutions.CHK
                 }
             }
 
-            var offers = Products.Where(x=>x.Value.SpecialOffers != null && x.Value.SpecialOffers.Any(y=>y.OfferType == Enums.SpecialOfferType.BuyOneGetAnotherFree))
+            var offers = Products.Where(x => x.Value.SpecialOffers != null && x.Value.SpecialOffers.Any(y => y.OfferType == Enums.SpecialOfferType.BuyOneGetAnotherFree))
                 .ToDictionary(s => s.Key, s => s.Value.SpecialOffers);
 
             skuCounts = specialOfferService.ApplyBuyOneProductGetAnotherProductFreeOffer(skuCounts, offers);
@@ -57,7 +60,7 @@ namespace BeFaster.App.Solutions.CHK
                 var product = Products[skuCount.Key];
                 if (product != null)
                 {
-                    var offers = product.SpecialOffers.Where(x => x.OfferType == Enums.SpecialOfferType.BuyMultipleForPriceReduction);
+                    var offers = product.SpecialOffers.Where(x => x.OfferType == Enums.SpecialOfferType.BuyMultipleForPriceReduction).ToList();
                     totalPrice += offers.Any() ? specialOfferService.GetDiscountedPrice(skuCount.Key, skuCount.Value, product.Price, offers) : product.Price * skuCount.Value;
                 }
                 else
@@ -71,8 +74,8 @@ namespace BeFaster.App.Solutions.CHK
         private static IDictionary<char, Product> GetProducts()
         {
             var products = new Dictionary<char, Product>();
-           List<Product> productList = new List<Product>();
- 
+            List<Product> productList = new List<Product>();
+
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"Solutions\CHK\Data\Products.json");
 
             JsonSerializer serializer = new JsonSerializer();
@@ -87,6 +90,12 @@ namespace BeFaster.App.Solutions.CHK
             }
             products = productList.ToDictionary(x => x.Id, x => x);
             return products;
-        }        
+        }
+
+        private static IDictionary<char, IList<SpecialOffer>> GetSpecialOffers()
+        {
+            return Products.Where(x => x.Value.SpecialOffers != null).ToDictionary(s => s.Key, s => s.Value.SpecialOffers);
+        }
     }
 }
+
