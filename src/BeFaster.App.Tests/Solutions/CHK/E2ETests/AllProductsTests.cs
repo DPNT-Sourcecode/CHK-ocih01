@@ -84,5 +84,3 @@ namespace BeFaster.App.Tests.Solutions.CHK.E2ETests
         #endregion
     }
 }
-
-
