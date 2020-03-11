@@ -41,8 +41,8 @@ namespace BeFaster.App.Solutions.CHK
                 }
             }
 
-            var offers = Products.Where(x=> x.Value.SpecialOffers.Any(y => y.GetType().Equals(typeof(BuyOneGetAnotherFree))))
-                .ToDictionary(s => s.Key, s => s.Value.SpecialOffers.Where(z => z.OfferType == Enums.SpecialOfferType.BuyOneGetAnotherFree).ToList());
+            var offers = Products.Where(x=>x.Value.SpecialOffers != null && x.Value.SpecialOffers.Any(y => y.GetType().Equals(typeof(BuyOneGetAnotherFree))))
+                .ToDictionary(s => s.Key, s => s.Value.SpecialOffers);
 
             skuCounts = specialOfferService.ApplyBuyOneProductGetAnotherProductFreeOffer(skuCounts, offers);
             return skuCounts;
@@ -90,5 +90,6 @@ namespace BeFaster.App.Solutions.CHK
         }        
     }
 }
+
 
 

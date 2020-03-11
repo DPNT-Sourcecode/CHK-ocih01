@@ -31,7 +31,7 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
 
 
-        public IDictionary<char, int> ApplyBuyOneProductGetAnotherProductFreeOffer(IDictionary<char, int> skuCounts, Dictionary<char, List<SpecialOffer>> specialOffers)
+        public IDictionary<char, int> ApplyBuyOneProductGetAnotherProductFreeOffer(IDictionary<char, int> skuCounts, Dictionary<char, IList<SpecialOffer>> specialOffers)
         {
             foreach (var offer in specialOffers)
             {
@@ -75,4 +75,5 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
     }
 }
+
 
