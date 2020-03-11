@@ -7,7 +7,8 @@ namespace BeFaster.App.Solutions.CHK.Interfaces
     public interface ISpecialOffersRepository
     {
         IList<ISpecialOffer> GetAllSpecialOffers();
-        IList<T> GetSpecialOffersByType<T>() where T : class;
+        IEnumerable<T> GetSpecialOffersByType<T>() where T : class;
     }
 }
+
 

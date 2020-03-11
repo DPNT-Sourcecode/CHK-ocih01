@@ -134,10 +134,11 @@ namespace BeFaster.App.Solutions.CHK.Repositories
             };
         }
 
-        public IList<T> GetSpecialOffersByType<T>() where T : class
+        public IEnumerable<T> GetSpecialOffersByType<T>() where T : class
         {
-            return GetAllSpecialOffers().OfType<T>().ToList();
+            return GetAllSpecialOffers().OfType<T>();
         }
     }
 }
+
 
