@@ -11,7 +11,7 @@ namespace BeFaster.App.Solutions.CHK
     public static class CheckoutSolution
     {
         private static IDictionary<char, Product> products = GetProducts();
-        private static readonly Dictionary<char, IList<BuyOneGetAnotherFreeOffer>> buyOneGetAnotherProductOffers = GetBuyOneGetAnotherProductOffersOffers();
+        private static readonly Dictionary<char, BuyOneGetAnotherFreeOffer> buyOneGetAnotherProductOffers = GetBuyOneGetAnotherProductOffersOffers();
         private static readonly ISpecialOfferService specialOfferService = new SpecialOfferService();
 
         private const int invalidInput = -1;
@@ -74,9 +74,9 @@ namespace BeFaster.App.Solutions.CHK
             return productList.ToDictionary(x => x.Id, x => x);
         }
 
-        private static Dictionary<char, IList<BuyOneGetAnotherFreeOffer>> GetBuyOneGetAnotherProductOffersOffers()
+        private static Dictionary<char, BuyOneGetAnotherFreeOffer> GetBuyOneGetAnotherProductOffersOffers()
         {
-            return products.Where(x => x.Value.BuyOneGetAnotherFreeOffers != null).ToDictionary(s => s.Key, s => s.Value.BuyOneGetAnotherFreeOffers);
+            return products.Where(x => x.Value.BuyOneGetAnotherFreeOffer != null).ToDictionary(s => s.Key, s => s.Value.BuyOneGetAnotherFreeOffer);
         }
 
         //I could not use Json file directly for some reason, hence doing it this way
@@ -86,3 +86,4 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
