@@ -11,9 +11,9 @@ namespace BeFaster.App.Solutions.CHK.Services
         public int GetDiscountedPrice(char productId, int cartItemQuantity, int actualProductPrice, IList<SpecialOffer> specialOffers)
         {
             int discountedPrice = 0;
-            specialOffers = specialOffers.OrderByDescending(x=>x.ItemQuantity).ToList();
+            var offers = specialOffers.OrderByDescending(x=>x.ItemQuantity).OfType<BuyMultipleForPriceReduction>();
 
-            foreach (BuyMultipleForPriceReduction offer in specialOffers)
+            foreach (BuyMultipleForPriceReduction offer in offers)
             {
                 if (cartItemQuantity < offer.ItemQuantity) continue;
 
@@ -33,6 +33,7 @@ namespace BeFaster.App.Solutions.CHK.Services
 
         public IDictionary<char, int> ApplyBuyOneProductGetAnotherProductFreeOffer(IDictionary<char, int> skuCounts, Dictionary<char, IList<SpecialOffer>> specialOffers)
         {
+            var offers = specialOffers.OfType<BuyOneGetAnotherFree>();
             foreach (var offer in specialOffers)
             {
                 if (skuCounts.Keys.Contains(offer.Key))
@@ -75,4 +76,5 @@ namespace BeFaster.App.Solutions.CHK.Services
         }
     }
 }
+
 
